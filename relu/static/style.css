@@ -1,0 +1,45 @@
+#chatbot {
+    width: 70%;
+    height: 600px;
+    margin-left: 15%;
+}
+
+#result_form {
+    float: left;
+    width: 50%;
+    position: relative;
+    background-color: pink;
+    height: 600px;
+}
+
+#chat_form {
+    float: left;
+    width: 50%;
+    position: relative;
+    background-color: skyblue;
+    height: 600px;
+}
+
+#chatbox {
+    height:550px;
+    background-color: skyblue;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    max-height:100vh;
+}
+
+/* .chatfooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding:10px 0;
+    background-color: #FFF;
+    color: #000;
+    text-align: center;
+} */
+
+h1 {
+    color: aquamarine;
+}
+
