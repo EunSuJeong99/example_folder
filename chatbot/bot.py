@@ -12,3 +12,4 @@ from utils.Preprocess import Preprocess
 from utils.FindAnswer import FindAnswer
 from utils.Database import Database
 from utils.BotServer import BotServer
+from models.ner.NerModel import NerModel

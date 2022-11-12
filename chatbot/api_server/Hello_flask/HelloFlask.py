@@ -10,7 +10,7 @@ app = Flask(__name__)
 # 함수의 리턴값이 화면에 보이기 때문에 '뷰' 함수라고도 함.
 @app.route("/")
 def hello():
-    return "헬로우 플라스크"
+    return "하이 플라스크"
 
 if __name__ == '__main__':
     app.run(debug=True) # 서버실행
