@@ -13,13 +13,14 @@ app = Flask(__name__)
 
 from flask_cors import CORS
 CORS(app)
+
 # 챗봇 엔진 서버와 통신 (소켓 통신!)
 # 질의를 전송하고, 답변데이터를 수신한 경우 JSON 문자열을 dict 객체로 변환
 def get_answer_from_engine(bottype, query):
     # 챗봇 엔진 서버 연결
     mySocket = socket.socket()
     mySocket.connect((host, port))
- 
+
     # 챗봇 엔진 질의 요청
     json_data = {
         'Query': query,
@@ -27,15 +28,16 @@ def get_answer_from_engine(bottype, query):
     }
     message = json.dumps(json_data)
     mySocket.send(message.encode())
- 
+
     # 챗봇 엔진 답변 출력
     data = mySocket.recv(2048).decode()
     ret_data = json.loads(data)
- 
+
     # 챗봇 엔진 서버 연결 소켓 닫기
     mySocket.close()
- 
+
     return ret_data
+    
 
 
 @app.route('/', methods=['GET'])
