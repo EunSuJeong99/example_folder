@@ -27,6 +27,72 @@ $(function(){
 
 });
 
+// 챗봇 인사
+function onload() {
+    $chatbox = $("#chatbox");
+
+    firstTxt = "안녕하세요 relu 챗봇입니다."
+
+    // 인사, 이미지 출력
+    helloImg = "<img style='margin:0;' src='/static/img/hello.gif'>";
+    bottext = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + firstTxt + "</span></div>";
+    $chatbox.append(helloImg);
+    $chatbox.append(bottext);
+
+    btnCall()
+
+    // 스크롤 조정하기
+    $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
+
+    // 먼저 입력했던 내용은 지우기
+    $("#chattext").val("");
+    $("#chattext").focus();
+}
+
+// 기능 버튼 부르는 함수
+function btnCall() {
+    bottextStart = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>";
+    bottextEnd = "</span></div>";
+
+    $chatbox.append("<button id='btn1' class='button'>" + '메뉴추천' + "</button>");
+    $chatbox.append("<button id='btn2' class='button'>" + '주변가게' + "</button>");
+    $chatbox.append("<button id='btn3' class='button'>" + '룰렛' + "</button>");
+    $chatbox.append("<button id='btn4' class='button'>" + '예산추천' + "</button>");
+    $chatbox.append("<button id='btn5' class='button'>" + '레시피' + "</button>");
+    $chatbox.append("<br>");
+    $chatbox.append("<br>");
+
+    $("#btn1").click(function(){
+        bottext = "메뉴추천 기능을 시작하겠습니다.";
+
+        $chatbox.append(bottextStart + bottext + bottextEnd);
+    });
+
+    $("#btn2").click(function(){
+        bottext = "주변가게 기능을 시작하겠습니다.";
+
+        $chatbox.append(bottextStart + bottext + bottextEnd);
+    });
+
+    $("#btn3").click(function(){
+        bottext = "룰렛 기능을 시작하겠습니다.";
+
+        $chatbox.append(bottextStart + bottext + bottextEnd);
+    });
+
+    $("#btn4").click(function(){
+        bottext = "예산추천 기능을 시작하겠습니다.";
+
+        $chatbox.append(bottextStart + bottext + bottextEnd);
+    });
+
+    $("#btn5").click(function(){
+        bottext = "레시피 기능을 시작하겠습니다.";
+
+        $chatbox.append(bottextStart + bottext + bottextEnd);
+    });
+}
+
 function send_message(){
     const chattext = $("#chattext").val().trim();
 
@@ -60,6 +126,7 @@ function send_message(){
             // 답변 출력
             bottext = "<div style='margin:15px 0;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
             $chatbox.append(bottext);
+            
 
             // 스크롤 조정하기
             $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});

@@ -1,6 +1,6 @@
 #chatbot {
     width: 70%;
-    height: 600px;
+    height: 800px;
     margin-left: 15%;
     
 }
@@ -10,7 +10,7 @@
     width: 50%;
     position: relative;
     background-color: pink;
-    height: 600px;
+    height: 100%;
     animation:slide1 2s;
 }
 
@@ -19,17 +19,35 @@
     width: 50%;
     position: relative;
     background-color: skyblue;
-    height: 600px;
+    height: 100%;
     animation: slide2 2s;
 }
 
 #chatbox {
-    height:550px;
+    height:755px;
     background-color: skyblue;
     overflow-y:scroll;
     overflow-x:hidden;
     max-height:100vh;
     
+}
+
+/* 기능 버튼 */
+.button {
+    display: block;
+    position: relative;
+    float: left;
+    width: 80px;
+    padding-left: 5px;
+    margin: 5px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    border-radius: 5px;
+    border: 0px;
+    transition: all 0.2s ;
+    background: #FFAA40;;
 }
 
 
