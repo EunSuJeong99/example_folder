@@ -19,19 +19,19 @@ from utils.FindAnswer import FindAnswer
 p = Preprocess(word2index_dic='train_tools/dict/chatbot_dict.bin', userdic='utils/user_dic.tsv')
 
 # 의도 파악 모델
-intent = IntentModel(model_name=os.path.join('chatbot/models/intent','intent_model.h5'), preprocess=p)
+intent = IntentModel(model_name='models/intent/intent_model.h5', preprocess=p)
 
 # 감정 파악 모델
-feel = FeelModel(model_name=os.path.join('chatbot/models/intent','feel_model.h5'), preprocess=p)
+feel = FeelModel(model_name='models/intent/feel_model.h5', preprocess=p)
 
 # 날씨 파악 모델
-weather = WeatherModel(model_name=os.path.join('chatbot/models/intent','weather_model.h5'), preprocess=p)
+weather = WeatherModel(model_name='models/intent/weather_model.h5', preprocess=p)
 
 # 상황 파악 모델
-situation = SituationModel(model_name=os.path.join('chatbot/models/intent','situation_model.h5'), preprocess=p)
+situation = SituationModel(model_name='models/intent/situation_model.h5', preprocess=p)
 
 # YN 파악 모델
-yn = YNModel(model_name=os.path.join('chatbot/models/intent','yn_model.h5'), preprocess=p)
+yn = YNModel(model_name='models/intent/yn_model.h5', preprocess=p)
 
 # 개체명 인식 모델
 ner = NerModel(model_name='models/ner/ner_model.h5', preprocess=p)
