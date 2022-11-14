@@ -72,6 +72,10 @@ function btnCall() {
         bottext = "주변가게 기능을 시작하겠습니다.";
 
         $chatbox.append(bottextStart + bottext + bottextEnd);
+        bottext = "현재 위치가 어디신가요?";
+        setTimeout(function() {
+            $chatbox.append(bottextStart + bottext + bottextEnd);
+        }, 1000);
     });
 
     $("#btn3").click(function(){
