@@ -137,10 +137,6 @@ function send_message(){
         },
     });
 
-    if (chattext == "역삼역"){
-        initTmap()
-    }
-
 
     
     let $chat=$('#chat');
@@ -149,6 +145,24 @@ function send_message(){
             .animate({'bottom':'15px'},500)
             .animate({'bottom':'25px'},500,loopBoat);
     }
+
+
+
+
+    if (chattext.indexOf("식") != -1){
+        categorychat = chattext
+    }
+
+
+    if (chattext.indexOf("역") != -1){
+        locationchat = chattext
+        initTmap(categorychat, locationchat)
+    }else if (chattext.indexOf("동") != -1){
+        locationchat = chattext
+        initTmap(categorychat, locationchat)
+    }
+
+
 } // end 
 
 
@@ -157,9 +171,9 @@ function send_message(){
 var map, marker;
 var markerArr = [];
 
-function initTmap(){
+function initTmap(category, location){
 
-   callTmp()
+   callTmp(category, location)
 
     // 1. 지도 띄우기
    map = new Tmapv2.Map("map_div", {
@@ -181,7 +195,7 @@ function initTmap(){
            url:"https://apis.openapi.sk.com/tmap/pois?version=1&format=json&callback=result",
            async:false,
            data:{
-               "appKey" : "apikey 넣어야함",
+               "appKey" : "api key 가 필요한 부분!!!!!!!!!",
                "searchKeyword" : searchKeyword,
                "resCoordType" : "EPSG3857",
                "reqCoordType" : "WGS84GEO",
@@ -242,13 +256,9 @@ function initTmap(){
 }
 
 
-function callTmp(){
+function callTmp(category, location){
 
-    m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value='서울시'><button id='btn_select'>적용하기</button></div>"+"<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar' style='background-color : rgb(209, 209, 19)'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
-
-
-
-    m2 = "<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult' style='background-color: rgb(209, 209, 19);'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
+    m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + category +"><button id='btn_select'>적용하기</button></div>"+"<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar' style='background-color : rgb(209, 209, 19)'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
 
 
     $result_form = $("#result_form");
