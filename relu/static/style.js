@@ -121,6 +121,7 @@ function send_message(){
         crossDomain: true,
         success: function(response){
             // response.Answer 에 챗봇의 응답메세지가 담겨 있다
+            console.log(response)
             $chatbox = $("#chatbox");
 
             // 답변 출력
