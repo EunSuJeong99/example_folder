@@ -48,7 +48,9 @@ function onload() {
     // 먼저 입력했던 내용은 지우기
     $("#chattext").val("");
     $("#chattext").focus();
-}
+
+}  // end 챗봇 인사
+
 
 // 기능 버튼 부르는 함수
 function btnCall() {
@@ -65,8 +67,16 @@ function btnCall() {
 
     $("#btn1").click(function(){
         bottext = "메뉴추천 기능을 시작하겠습니다.";
+        $chatbox.append(bottextStart + bottext  + bottextEnd);
 
-        $chatbox.append(bottextStart + bottext + bottextEnd);
+        bottext2 = "1.양식 2.중식 3.한식 4.일식 5.디저트  / 1~5번에서 하나를 입력해주세요."
+        bottext3 = "ex)양식  /  양식 추천해줘"
+        setTimeout(function() {
+            $chatbox.append(bottextStart + bottext2 + bottextEnd);
+        }, 1000);
+        setTimeout(function() {
+            $chatbox.append(bottextStart + bottext3 + bottextEnd);
+        }, 1000);
     });
 
     $("#btn2").click(function(){
@@ -89,15 +99,27 @@ function btnCall() {
         bottext = "예산추천 기능을 시작하겠습니다.";
 
         $chatbox.append(bottextStart + bottext + bottextEnd);
+
+        bottext2 = "1인당 예산을 입력해주세요. ex)10000"
+        setTimeout(function() {
+            $chatbox.append(bottextStart + bottext2 + bottextEnd);
+        }, 1000);
     });
 
     $("#btn5").click(function(){
         bottext = "레시피 기능을 시작하겠습니다.";
 
         $chatbox.append(bottextStart + bottext + bottextEnd);
-    });
-}
 
+        bottext2 = "원하는 레시피의 음식명을 입력해주세요!"
+        setTimeout(function() {
+            $chatbox.append(bottextStart + bottext2 + bottextEnd);
+        }, 1000);
+
+    });
+} 
+
+// end 버튼 부르는 함수
 function send_message(){
     const chattext = $("#chattext").val().trim();
 
@@ -131,7 +153,7 @@ function send_message(){
            
 
             // 답변 출력
-            bottext = "<div style='margin:15px 0;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
+            bottext = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
             $chatbox.append(bottext);
             
 
@@ -152,9 +174,6 @@ function send_message(){
             .animate({'bottom':'15px'},500)
             .animate({'bottom':'25px'},500,loopBoat);
     }
-
-
-
 
     if (chattext.indexOf("식") != -1){
         categorychat = chattext
@@ -187,7 +206,7 @@ function initTmap(category, location){
        center: new Tmapv2.LatLng(37.4995811, 127.0338292),   // 역삼역
        width : "300px",
        height : "800px",
-       zoom : 17,
+       zoom : 10,
        zoomControl : true,
        scrollwheel : true
        
@@ -202,7 +221,7 @@ function initTmap(category, location){
            url:"https://apis.openapi.sk.com/tmap/pois?version=1&format=json&callback=result",
            async:false,
            data:{
-               "appKey" : "api key 가 필요한 부분!!!!!!!!!",
+               "appKey" : "l7xxd9cd26704b094c58a40c219b5f9e62b2",
                "searchKeyword" : searchKeyword,
                "resCoordType" : "EPSG3857",
                "reqCoordType" : "WGS84GEO",
