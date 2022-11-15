@@ -50,10 +50,15 @@
     background: #FFAA40;;
 }
 
+/* 상단 메뉴 */
+a:hover {
+    font-weight: bold;
+}
+
 
 @keyframes slide1 {
     from{
-        left:-300px;
+        left:-400px;
     }
     to{
         left:0px
@@ -61,7 +66,7 @@
 }
 @keyframes slide2 {
     from{
-        right:-300px;
+        right:-400px;
     }
     to{
         right:0px
@@ -79,12 +84,12 @@
     opacity:0.5;
     background-repeat:no-repeat;
     background-size:cover;
-    animation:slide3 3s;
+    animation:slide3 4s;
 }
 
 @keyframes slide3 {
     from {
-        left:-300px;
+        left:-400px;
         opacity:0;
     }
     to{
@@ -98,16 +103,8 @@
     position: absolute;
     opacity:0.9;
     left: 40%;
-    top: 20%;
-    animation: slide4 3s;
-}
-
-#third{
-    /* background-image: url("/static/door_img/logo.png"); */
-    position: absolute;
-    left: 46%;
-    top: 60%;
-    animation: slide5 3s;
+    top: 18%;
+    animation: slide4 4s;
 }
 @keyframes slide4 {
     from {
@@ -115,9 +112,17 @@
         opacity:0;
     }
     to{
-        top:175px;
+        top:135px;
        opacity:0.9; 
     }
+}
+
+#third{
+    /* background-image: url("/static/door_img/logo.png"); */
+    position: absolute;
+    left:47%;
+    top: 60%;
+    animation: slide5 4s;
 }
 @keyframes slide5 {
     from {
@@ -125,7 +130,138 @@
         
     }
     to{
-        left:46%
+        left:47%
         
     }
+}
+#po{
+    animation:slide6 4s;
+}
+@keyframes slide6{
+    from{
+        left:-500px;
+        opacity:0;
+    }
+    to{
+        left:0px;
+        opacity:1;
+    }
+}
+/* #logo{
+    animation:slide7 4s;
+}
+@keyframes slide7{
+    from{
+       left:-100px;
+    }
+    to{
+        left:0px;
+    }
+} */
+/*   팝업 임시 버튼 스타일  */
+.btn-box .btn-open {
+    display: block;
+    width: 200px;
+    height: 50px;
+    margin: 80px auto 0;
+    line-height: 50px;
+    background: #333;
+    text-align: center;
+}
+
+.btn-box .btn-open span {
+    color: #fff;
+}
+
+ /*   팝업 임시 버튼 스타일  */
+ .btn-box .btn-open {
+    display: block;
+    width: 200px;
+    height: 50px;
+    margin: 80px auto 0;
+    line-height: 50px;
+    background: #333;
+    text-align: center;
+}
+
+.btn-box .btn-open span {
+    color: #fff;
+}
+
+.popup-wrap{
+
+    /* justify-content:center;  */
+    align-items:center;    
+    position:absolute;         
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;              
+    display:none; 
+
+     display:flex;
+    
+    
+  }
+  .popup{
+    width:100%;               
+    max-width:400px;          
+    border-radius:10px;       
+    overflow:hidden;         
+    background-color:#264db5; 
+
+    box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); 
+  }
+
+  .popup-head{
+    width:100%;
+   
+    height:50px;  
+    display:flex; 
+    align-items:center;
+    justify-content:center;
+  }
+  .popup-body{               
+    width:100%;
+    height:100%;
+    background-color:#264db5;
+  }
+  .body-content{              
+    width:100%;
+               
+  }
+  .body-titlebox{            
+       
+    width:100%;
+    height:40px;
+       
+  }
+  .body-contentbox{           
+    word-break:break-word;   
+    overflow-y:auto;          
+    min-height:100px;         
+    max-height:200px;         
+  }
+
+  .popup-foot{                      
+    width:100%;
+    height:50px;
+  }
+  .pop-btn{ 
+              
+    width:50%;                     
+    height:100%;                  
+    justify-content:center;        
+    align-items:center;            
+    float:center;                    
+    color:#ffffff;                 
+    cursor:pointer;                 
+  }
+  .pop-btn.confirm{               
+    border-right:1px solid #3b5fbf; 
+  }
+
+#ani {
+    animation: heartBeat; 
+    animation-duration:5s;
 }

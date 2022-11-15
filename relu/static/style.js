@@ -30,6 +30,7 @@ $(function(){
 // 챗봇 인사
 function onload() {
     $chatbox = $("#chatbox");
+    $result_form = $("#result_form");
 
     firstTxt = "안녕하세요 relu 챗봇입니다."
 
@@ -43,7 +44,7 @@ function onload() {
 
     // 스크롤 조정하기
     $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
-
+   
     // 먼저 입력했던 내용은 지우기
     $("#chattext").val("");
     $("#chattext").focus();
@@ -127,6 +128,7 @@ function send_message(){
             // response.Answer 에 챗봇의 응답메세지가 담겨 있다
             console.log(response)
             $chatbox = $("#chatbox");
+           
 
             // 답변 출력
             bottext = "<div style='margin:15px 0;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
@@ -135,7 +137,7 @@ function send_message(){
 
             // 스크롤 조정하기
             $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
-
+            
             // 먼저 입력했던 내용은 지우기
             $("#chattext").val("");
             $("#chattext").focus();
@@ -272,3 +274,40 @@ function callTmp(category, location){
     // $result_form.append(m2)
 
 }
+
+function recipe() {
+
+    const chattext=$('#chattext').value.trim().replace(' ','+');
+    let url,xhttp;
+ 
+    url=`https://www.youtube.com/results?search_query=${chattext}`;   
+ 
+    xhttp=new XMLHttpRequest();
+    xhttp.onreadystatechange=function(){
+       if(this.readyState==4 && this.status==200){
+       }
+    };
+    xhttp.open('GET',url,true);
+    xhttp.send();
+ }
+
+ function popOpen() {
+
+    var modalPop = $('.modal-wrap');
+    var modalBg = $('.modal-bg'); 
+
+    $(modalPop).show();
+    $(modalBg).show();
+
+}
+
+ function popClose() {
+   var modalPop = $('.modal-wrap');
+   var modalBg = $('.modal-bg');
+
+   $(modalPop).hide();
+   $(modalBg).hide();
+
+}
+
+

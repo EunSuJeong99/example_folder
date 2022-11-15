@@ -1,6 +1,23 @@
 from django.shortcuts import render
+from selenium import webdriver
+import time
+from django.http import HttpRequest
 
-def index(request):
+def index(request:HttpRequest):
+    # keyword=request.GET.get('chattext')
+    # if keyword != None:
+    #     '''driver = webdriver.Chrome('./chromedriver')
+    #         youtube = 'https://www.youtube.com/'
+    #         driver.get(youtube)'''
+    # time.sleep(2)
+    
+    # # if keyword == '0':
+    # #     print('레시피 기능을 종료하겠습니다.')
+    
+    # driver = webdriver.Chrome('./chromedriver')
+    # youtube = 'https://www.youtube.com/results?search_query=' + str(keyword)
+    # driver.get(youtube)
+
     return render(request,'index.html')
 
 def article(request):

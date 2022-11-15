@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/style.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <title>ReLu ChatBot</title>
 <style>
-  /* #div3{
-	width: 100px;
-	height: 100px;
-	background-color: yellow;;
-} */
+
 #circle{
 	position: absolute;
 	width: 20px;
@@ -25,25 +25,10 @@
 }
 #div1{
   background-image:url(https://aihub.or.kr/web-nas/aihub21/files/public/2021-01/data_image_3_3.png);
-  /* background-repeat:no-repeat; */
-  /* background-size:cover; */
 }
-/* #myCarousel{
-  width:800px;
-  background-image:url('/static/img/pizza.png');
-}
-.carousel-indicators{
-  background-image:url('/static/img/pizza.png');
-}
-.carousel-inner{
-  background-image:url('/static/img/pizza.png');
-} */
-/* main{
-  background-color:black;
-} */
-  /* <table id="chat" width="1400px" height="500px" border="1" style="background-color:skyblue"> */
+
 </style>
-</head>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- -------------------------------------------------- -->
@@ -77,15 +62,10 @@
 		  $(this).html('<b>맛집영상</b>');
 		});
   })
+
 </script>
+</head>
 <body onload="onload()">
-  <!-- <button id="btn04">btn04 anim</button>
-  <div style="height:120px; position:relative;">
-    <div id="div3">asdf</div>
-  </div> -->
-
-  
-
   <div id="circle"></div>
 
     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="background-color:yellow;height:50px">
@@ -99,15 +79,19 @@
         <li><a href="/house/" class="nav-link px-2 link-dark"style="font-size:22px;color:gray"id='p08'>맛집영상</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </ul>
       <br>
-    <div align="center" width="50%">
-       
-      <a href="/index/"><img style="width:200px;height:150px" src="/static/door_img/logo.png" alt="lunch"></a>
-       
+      
+      <!-- <h1 id="clock"></h1> -->
+    <div align="center">
+      
+      <a href="/index/"><img id='ani' class="animate__animated animate__heartBeat " style="width:200px;height:150px" src="/static/door_img/logo.png" alt="lunch"></a>
+      
     </div>
     <br>
     <div id="chatbot" align="center" > 
       <!-- 결과창 -->
       <div id="result_form">
+        <div align="left" id="gk">
+        </div>
         <!-- 이부분만 건드리면 됩니다. -->
       </div>
 
@@ -119,13 +103,16 @@
           <table width="100%">
               <tr>
                   <td width="90%">
-                      <input placeholder="입력부분" id="chattext" style="width:100%;height:40px;border:solid 1px black;">
+                      <input placeholder="입력부분" id="query" style="width:100%;height:40px;border:solid 1px black;">
                   </td>
                   <td width="10%">
-                      <button id="sendbtn" style="height:44px;width:100%;border-radius: 30%;border:0" >send</button>
+                      <button id="search" style="height:44px;width:100%;border-radius: 30%;border:0" >send</button>
                   </td>
               </tr>
           </table>
+          
+            
+          </div>
         </div>
       </div>
     </div>
@@ -177,9 +164,101 @@
             </div>
             
           </div></main>
+          <div class="container" id="po"> 
+            <div class="popup-wrap" id="popup"> 
+              <div class="popup">	
+                <div class="popup-head">	
+                    <span class="head-title" style="font-size:45px;color:white">Shorts</span>
+                </div>
+                <div class="popup-body">	
+                  <iframe width="400px" height="200px" src="https://www.youtube.com/embed/Pyr4HUpT1tg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="popup-foot" align='center'> 
+                  <!-- <span class="pop-btn confirm" id="confirm">확인</span> -->
+                  <span class="pop-btn close" id="close" style="font-size:25px;">창 닫기</span>
+                </div>
+              </div>
+             </div>
+          </div>
    
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
+
+          <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+ 
+    <script>
+        $(document).ready(function () {
+            var pageNum = 1;
+ 
+            $("#search").click(function () {
+                $("#gk").html("");
+ 
+                $.ajax({
+                    method: "GET",
+                    url: "https://dapi.kakao.com/v2/search/vclip",
+                    data: { query: $("#query").val(), page: pageNum},
+                    headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"} // ########부분에 본인의 REST API 키를 넣어주세요.
+ 
+                })
+                .done(function (msg) {
+                    console.log(msg);
+                    for (var i = 0; i < 4; i++){
+                        $("#gk").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
+                        $("#gk").append("<strong>저자 : </strong> " + msg.documents[i].author + "<br>");
+                        // $("#gk").append("<strong>재생시간 :</strong> " + msg.documents[i].datetime +'분'+ "<br>");
+                        $("#gk").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
+                    }
+                });
+            })
+ 
+            $(window).scroll(function(){  
+ 
+                if ( Math.ceil($(window).scrollTop()) + $(window).height() >= $(document).height() ){
+                    pageNum++;
+ 
+ 
+                    $.ajax({
+                        method: "GET",
+                        url: "https://dapi.kakao.com/v3/search/book?target=title",
+                        data: { query: $("#query").val(),  page: pageNum},
+                        headers: {Authorization: "KakaoAK "} // ########부분에 본인의 REST API 키를 넣어주세요.
+ 
+                    })
+                    .done(function (msg) {
+                        console.log(msg);
+                        for (var i = 0; i < 10; i++){
+                            $("div").append("<a href='"+ msg.documents[i].url +"'>" + msg.documents[i].title + "</a>");
+                            $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");
+                            $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");
+                            $("div").append("<strong>요약:</strong> " + msg.documents[i].contents + "...<br>");
+                            $("div").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
+                        }
+                    });
+ 
+                }
+                
+            });
+        })
+        $(function(){
+  $("#confirm").click(function(){
+      modalClose(); //모달 닫기 함수 호출
+      
+      //컨펌 이벤트 처리
+  });
+  $("#modal-open").click(function(){        
+      $("#popup").css('display','flex').hide().fadeIn();
+      //팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+  });
+  $("#close").click(function(){
+      modalClose(); //모달 닫기 함수 호출
+  });
+  function modalClose(){
+      $("#popup").fadeOut(); //페이드아웃 효과
+  }
+});
+        
+    </script>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
