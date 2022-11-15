@@ -50,6 +50,11 @@
     background: #FFAA40;;
 }
 
+/* 상단 메뉴 */
+a:hover {
+    font-weight: bold;
+}
+
 
 @keyframes slide1 {
     from{

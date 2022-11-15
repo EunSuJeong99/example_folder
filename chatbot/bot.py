@@ -13,6 +13,8 @@ from models.intent.SituationModel import SituationModel
 from models.intent.YNModel import YNModel
 from models.ner.NerModel import NerModel
 from utils.FindAnswer import FindAnswer
+from utils.FindFood import FindFood
+from utils.FindMoney import FindMoney
 
 
 # 전처리 객체 생성
@@ -34,7 +36,9 @@ situation = SituationModel(model_name='models/intent/situation_model.h5', prepro
 yn = YNModel(model_name='models/intent/yn_model.h5', preprocess=p)
 
 # 개체명 인식 모델
-ner = NerModel(model_name='models/ner/ner_model.h5', preprocess=p)
+ner = NerModel(model_name='models/ner/ner_model.h5', preprocess=p)   
+
+
 
 # 클라리언트 요청을 수행하는 쓰레드 (에 담을) 함수
 def to_client(conn, addr, params):
@@ -65,6 +69,57 @@ def to_client(conn, addr, params):
         # 개체명 파악
         ner_predicts = ner.predict(query)
         ner_tags = ner.predict_tags(query)
+
+
+        # 기분, 날씨, 상황일 때 여기 들어온다
+        if intent_name == '기분' or intent_name == '날씨' or intent_name == '상황':
+            # 기분, 날씨, 상황 가져오기
+            if intent_name == '기분':
+                si_label = feel.predict_class(query)
+            elif intent_name == '날씨':
+                si_label = weather.predict_class(query)
+            elif intent_name == '상황':
+                si_label = situation.predict_class(query)
+
+            # 음식 검색해오기
+            try:
+                findfood = FindFood(db)
+                answer = findfood.searchFood(intent_name, si_label)      
+                answer = answer + "는(은) 어떠세요?"
+            except:
+                answer = "밥은...그냥 아무거나 먹어요"
+            
+            sent_json_data_str = {    # response 할 JSON 객체 준비
+                "Query" : query,
+                "Answer": answer,
+                "Intent": intent_name
+            }
+            
+            message = json.dumps(sent_json_data_str)
+            conn.send(message.encode())  # responses
+
+            return
+
+        # 예산에 대한 음식 가져오기
+        if query.isdigit():
+            query = int(query)
+
+            # 음식 검색해오기
+            try:
+                fintmoney = FindMoney(db)
+                answer = fintmoney.searchMoney(query)      
+                answer = answer + "는(은) 어떠세요?"
+            except:
+                answer = "돈이 없어요?"
+            
+            sent_json_data_str = {    # response 할 JSON 객체 준비
+                "Query" : query,
+                "Answer": answer
+            }
+            
+            message = json.dumps(sent_json_data_str)
+            conn.send(message.encode())  # responses
+            return
         
         # 답변 검색
         try:

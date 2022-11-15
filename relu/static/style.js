@@ -47,7 +47,9 @@ function onload() {
     // 먼저 입력했던 내용은 지우기
     $("#chattext").val("");
     $("#chattext").focus();
-}
+
+}  // end 챗봇 인사
+
 
 // 기능 버튼 부르는 함수
 function btnCall() {
@@ -91,7 +93,7 @@ function btnCall() {
 
         $chatbox.append(bottextStart + bottext + bottextEnd);
     });
-}
+} // end 버튼 부르는 함수
 
 function send_message(){
     const chattext = $("#chattext").val().trim();
@@ -124,7 +126,7 @@ function send_message(){
             $chatbox = $("#chatbox");
 
             // 답변 출력
-            bottext = "<div style='margin:15px 0;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
+            bottext = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
             $chatbox.append(bottext);
             
 
@@ -143,5 +145,5 @@ function send_message(){
             .animate({'bottom':'15px'},500)
             .animate({'bottom':'25px'},500,loopBoat);
     }
-} // end 
+} // end send message 함수
 
