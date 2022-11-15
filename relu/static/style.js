@@ -16,12 +16,14 @@ $(function(){
     // SEND 버튼을 누르거나
     $("#sendbtn").click(function(){
         send_message();
+        $('#result_form').empty();
     });
 
     // ENTER key 가 눌리면
     $("#chattext").keyup(function(event){
         if(event.keyCode == 13){
             send_message();
+            $('#result_form').empty();
         }
     });
 
@@ -68,6 +70,9 @@ function btnCall() {
         bottext = "메뉴추천 기능을 시작하겠습니다.";
 
         $chatbox.append(bottextStart + bottext + bottextEnd);
+
+        send_message("카테고리")
+        // send_message()
     });
 
     $("#btn2").click(function(){
@@ -99,18 +104,28 @@ function btnCall() {
     });
 } // end 버튼 부르는 함수
 
-function send_message(){
-    const chattext = $("#chattext").val().trim();
 
-    // 입력한 메세지가 없으면 리턴
+
+function send_message(chattext=""){
+    
     if(chattext == ""){
-        $("#chattext").focus();
-        return;
+        var chattext = $("#chattext").val().trim();
+        addtext = "<div style='margin:15px 0;text-align:right;'> <span style='padding:3px 10px;background-color:#3388cc;border-radius:3px;'>" + chattext + "</span></div>";
+        $("#chatbox").append(addtext);    
     }
 
+
+    // const chattext = $("#chattext").val().trim();
+
+    // 입력한 메세지가 없으면 리턴
+    // if(chattext == ""){
+    //     $("#chattext").focus();
+    //     return;
+    // }
+
     // 입력한 채팅 출력
-    addtext = "<div style='margin:15px 0;text-align:right;'> <span style='padding:3px 10px;background-color:#3388cc;border-radius:3px;'>" + chattext + "</span></div>";
-    $("#chatbox").append(addtext);    
+    // addtext = "<div style='margin:15px 0;text-align:right;'> <span style='padding:3px 10px;background-color:#3388cc;border-radius:3px;'>" + chattext + "</span></div>";
+    // $("#chatbox").append(addtext);    
 
     // API 서버에 보낼 데이터 준비
     const jsonData = {
@@ -268,6 +283,6 @@ function callTmp(category, location){
     $result_form = $("#result_form");
 
     $result_form.append(m1)
-    // $result_form.append(m2)
+ 
 
 }
