@@ -17,14 +17,14 @@ $(function(){
     // SEND 버튼을 누르거나
     $("#sendbtn").click(function(){
         send_message();
-        
+        $btntype = "";
     });
 
     // ENTER key 가 눌리면
     $("#chattext").keyup(function(event){
         if(event.keyCode == 13){
             send_message();
-            
+            $btntype = "";
         }
     });
 
@@ -61,6 +61,7 @@ var bottext1
 function btnCall() {
 
     $btntype = "";
+    $situ_plus = "";    // 상황별에서 이전에 입력한 것을 기억하기 위해
 
     bottextStart = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>";
     bottextEnd = "</span></div>";
@@ -157,11 +158,19 @@ function send_message(){
     addtext = "<div style='margin:15px 0;text-align:right;'> <span style='padding:3px 10px;background-color:#3388cc;border-radius:3px;'>" + chattext + "</span></div>";
     $("#chatbox").append(addtext);    
 
+
+    if($btntype == 'three_situ') {
+        $situ_plus = $("#chattext").val();  // 상황별에서 기억될 챗 따로 담음
+    }
+
+
+
     // API 서버에 보낼 데이터 준비
     const jsonData = {
         query: chattext,
         bottype: "WebClient",
-        btntype: $btntype
+        btntype: $btntype,
+        situ_plus: $situ_plus   // 상황별의 추가정보
     };
 
     $.ajax({
