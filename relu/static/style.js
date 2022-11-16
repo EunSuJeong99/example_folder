@@ -77,6 +77,8 @@ function btnCall() {
     $("#btn1").click(function(){
         bottext = "메뉴추천 기능을 시작하겠습니다.";
 
+        $btntype = 'category';
+
         $chatbox.append(bottextStart + bottext + bottextEnd);
 
         bottext2 = "1.양식 2.중식 3.한식 4.일식 5.디저트  / 1~5번에서 하나를 입력해주세요."
@@ -233,6 +235,8 @@ function send_message(){
 
 function mapt(chattext){
     if (chattext.indexOf("식") != -1){
+        categorychat = chattext
+    }else if (chattext.indexOf("디저트") != -1){
         categorychat = chattext
     }
 
