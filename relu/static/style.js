@@ -321,6 +321,13 @@ function initTmap(category, location){
        });
    });
 
+   
+    // 결과 자동클릭
+    $(document).ready(function(){
+		$("#btn_select").trigger('click');
+
+	});
+
 }
 
 
