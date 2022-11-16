@@ -16,7 +16,7 @@ CORS(app)
 
 # 챗봇 엔진 서버와 통신 (소켓 통신!)
 # 질의를 전송하고, 답변데이터를 수신한 경우 JSON 문자열을 dict 객체로 변환
-def get_answer_from_engine(bottype, query):
+def get_answer_from_engine(bottype, query, btntype):
     # 챗봇 엔진 서버 연결
     mySocket = socket.socket()
     mySocket.connect((host, port))
@@ -24,7 +24,8 @@ def get_answer_from_engine(bottype, query):
     # 챗봇 엔진 질의 요청
     json_data = {
         'Query': query,
-        'BotType': bottype
+        'BotType': bottype,
+        'BtnType': btntype
     }
     message = json.dumps(json_data)
     mySocket.send(message.encode())
@@ -54,7 +55,7 @@ def query(bot_type):
     try:
         if bot_type == 'TEST':
             # TODO : 챗봇엔진에 소켓통신하여 query 를 보내고 답을 받아오기
-            ret = get_answer_from_engine(bottype=bot_type, query=body['query'])
+            ret = get_answer_from_engine(bottype=bot_type, query=body['query'], btntype=body['btntype'])
             return jsonify(ret)
         
         elif bot_type == "KAKAO":

@@ -54,6 +54,10 @@ function onload() {
 var bottext1
 // 기능 버튼 부르는 함수
 function btnCall() {
+
+    // btntype변수
+    $btntype = "";
+
     bottextStart = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>";
     bottextEnd = "</span></div>";
 
@@ -98,6 +102,8 @@ function btnCall() {
     $("#btn4").click(function(){
         bottext = "예산추천 기능을 시작하겠습니다.";
 
+        $btntype = "money"   // 예산 추천 기능은 money를 넘겨줌
+
         $chatbox.append(bottextStart + bottext + bottextEnd);
 
         bottext2 = "1인당 예산을 입력해주세요. ex)10000"
@@ -138,6 +144,7 @@ function send_message(){
     const jsonData = {
         query: chattext,
         bottype: "WebClient",
+        btntype: $btntype
     };
 
     $.ajax({
