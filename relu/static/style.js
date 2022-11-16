@@ -51,7 +51,7 @@ function onload() {
 
 }  // end 챗봇 인사
 
-
+var bottext1
 // 기능 버튼 부르는 함수
 function btnCall() {
     bottextStart = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>";
@@ -115,6 +115,7 @@ function btnCall() {
         setTimeout(function() {
             $chatbox.append(bottextStart + bottext2 + bottextEnd);
         }, 1000);
+        bottext1="원하는 레시피의 음식명을 입력해주세요!"
 
     });
 } 
@@ -166,8 +167,6 @@ function send_message(){
         },
     });
 
-
-    
     let $chat=$('#chat');
     function chat(){
         $chat
@@ -175,20 +174,9 @@ function send_message(){
             .animate({'bottom':'25px'},500,loopBoat);
     }
 
-    if (chattext.indexOf("식") != -1){
-        categorychat = chattext
+    if (bottext1=="원하는 레시피의 음식명을 입력해주세요!"){
+        recipe()
     }
-
-
-    if (chattext.indexOf("역") != -1){
-        locationchat = chattext
-        initTmap(categorychat, locationchat)
-    }else if (chattext.indexOf("동") != -1){
-        locationchat = chattext
-        initTmap(categorychat, locationchat)
-    }
-
-
 } // end 
 
 
@@ -236,8 +224,8 @@ function initTmap(category, location){
                        markerArr[i].setMap(null);
                    }
                }
-               var innerHtml ="";	// Search Reulsts 결과값 노출 위한 변수
-               var positionBounds = new Tmapv2.LatLngBounds();		//맵에 결과물 확인 하기 위한 LatLngBounds객체 생성
+               var innerHtml ="";   // Search Reulsts 결과값 노출 위한 변수
+               var positionBounds = new Tmapv2.LatLngBounds();      //맵에 결과물 확인 하기 위한 LatLngBounds객체 생성
                
                for(var k in resultpoisData){
                    
@@ -265,11 +253,11 @@ function initTmap(category, location){
                    innerHtml += "<li><img src='http://tmapapi.sktelecom.com/upload/tmap/marker/pin_b_m_" + k + ".png' style='vertical-align:middle;'/><span>"+name+"</span></li>";
                    
                    markerArr.push(marker);
-                   positionBounds.extend(markerPosition);	// LatLngBounds의 객체 확장
+                   positionBounds.extend(markerPosition);   // LatLngBounds의 객체 확장
                }
                
-               $("#searchResult").html(innerHtml);	//searchResult 결과값 노출
-               map.panToBounds(positionBounds);	// 확장된 bounds의 중심으로 이동시키기
+               $("#searchResult").html(innerHtml);   //searchResult 결과값 노출
+               map.panToBounds(positionBounds);   // 확장된 bounds의 중심으로 이동시키기
                map.zoomOut();
                
            },
@@ -284,8 +272,8 @@ function initTmap(category, location){
 
 function callTmp(category, location){
 
+    // m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + category +"><button id='btn_select'>적용하기</button></div>"+"<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar' style='background-color : rgb(209, 209, 19)'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
     m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + category +"><button id='btn_select'>적용하기</button></div>"+"<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar' style='background-color : rgb(209, 209, 19)'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
-
 
     $result_form = $("#result_form");
 
@@ -293,22 +281,6 @@ function callTmp(category, location){
     // $result_form.append(m2)
 
 }
-
-function recipe() {
-
-    const chattext=$('#chattext').value.trim().replace(' ','+');
-    let url,xhttp;
- 
-    url=`https://www.youtube.com/results?search_query=${chattext}`;   
- 
-    xhttp=new XMLHttpRequest();
-    xhttp.onreadystatechange=function(){
-       if(this.readyState==4 && this.status==200){
-       }
-    };
-    xhttp.open('GET',url,true);
-    xhttp.send();
- }
 
  function popOpen() {
 
@@ -329,4 +301,55 @@ function recipe() {
 
 }
 
+function recipe(){
+    var pageNum = 1;
 
+    $("#sendbtn").click(function() {
+        $("#result_form").html("");
+        $.ajax({
+            method: "GET",
+            url: "https://dapi.kakao.com/v2/search/vclip",
+            data: { query: $("#chattext").val()+'레시피', page: pageNum},
+            headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"}
+        })
+        .done(function (msg) {
+            console.log(msg);
+            for (var i = 0; i < 4; i++){
+                $("#result_form").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
+                $("#result_form").append("<strong>저자 : </strong> " + msg.documents[i].author + "<br>");
+                $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
+            }
+        });
+        // $("#sendbtn").click(function(){
+        //     send_message();
+        // });
+    
+        // // ENTER key 가 눌리면
+        $("#chattext").keyup(function(event){
+            if(event.keyCode == 13){
+                send_message();
+            }
+        });
+    })
+
+}
+
+
+    
+$(function(){
+$("#confirm").click(function(){
+modalClose(); //모달 닫기 함수 호출
+
+//컨펌 이벤트 처리
+});
+$("#modal-open").click(function(){        
+$("#popup").css('display','flex').hide().fadeIn();
+//팝업을 flex속성으로 바꿔준 후 hide()로 숨기고 다시 fadeIn()으로 효과
+});
+$("#close").click(function(){
+modalClose(); //모달 닫기 함수 호출
+});
+function modalClose(){
+$("#popup").fadeOut(); //페이드아웃 효과
+}
+});
