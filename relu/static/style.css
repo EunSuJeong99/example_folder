@@ -1,7 +1,8 @@
+
 #chatbot {
-    width: 70%;
+    width: 85%;
     height: 800px;
-    margin-left: 15%;
+    margin-left: 8%;
     
 }
 
@@ -10,7 +11,7 @@
     width: 50%;
     position: relative;
     background-color: pink;
-    height: 100%;
+    height: 740px;
     animation:slide1 2s;
 }
 
@@ -19,12 +20,12 @@
     width: 50%;
     position: relative;
     background-color: skyblue;
-    height: 100%;
+    height: 740px;
     animation: slide2 2s;
 }
 
 #chatbox {
-    height:755px;
+    height:1000px;
     background-color: skyblue;
     overflow-y:scroll;
     overflow-x:hidden;
@@ -81,10 +82,10 @@ a:hover {
     position: absolute;
     left: 0px;
     top: 0px;
-    opacity:0.5;
+    opacity:0.4;
     background-repeat:no-repeat;
     background-size:cover;
-    animation:slide3 4s;
+    animation:slide3 7s;
 }
 
 @keyframes slide3 {
@@ -94,7 +95,7 @@ a:hover {
     }
     to{
         left:0px;
-        opacity:0.5;
+        opacity:0.4;
     }
 }
 
@@ -102,9 +103,9 @@ a:hover {
     /* background-image: url("/static/door_img/logo.png"); */
     position: absolute;
     opacity:0.9;
-    left: 40%;
-    top: 18%;
-    animation: slide4 4s;
+    left: 38%;
+    top: 20%;
+    animation: slide4 7s;
 }
 @keyframes slide4 {
     from {
@@ -112,7 +113,7 @@ a:hover {
         opacity:0;
     }
     to{
-        top:135px;
+        top:20%;
        opacity:0.9; 
     }
 }
@@ -121,8 +122,8 @@ a:hover {
     /* background-image: url("/static/door_img/logo.png"); */
     position: absolute;
     left:47%;
-    top: 60%;
-    animation: slide5 4s;
+    top: 63%;
+    animation: slide5 7s;
 }
 @keyframes slide5 {
     from {
