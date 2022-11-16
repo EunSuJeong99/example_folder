@@ -70,6 +70,7 @@ function btnCall() {
     $chatbox.append("<button id='btn3' class='button'>" + '룰렛' + "</button>");
     $chatbox.append("<button id='btn4' class='button'>" + '예산추천' + "</button>");
     $chatbox.append("<button id='btn5' class='button'>" + '레시피' + "</button>");
+    $chatbox.append("<button id='btn6' class='button'>" + '상황별' + "</button>");
     $chatbox.append("<br>");
     $chatbox.append("<br>");
 
@@ -130,6 +131,16 @@ function btnCall() {
             $chatbox.append(bottextStart + bottext2 + bottextEnd);
         }, 1000);
         bottext1="원하는 레시피의 음식명을 입력해주세요!"
+    });
+
+    $("#btn6").click(function(){
+        bottext = "상황별 추천을 시작하겠습니다.";
+        $chatbox.append(bottextStart + bottext + bottextEnd);
+        
+        bottext2 = "기분, 날씨 또는 상황을 입력해주세요!"
+        $chatbox.append(bottextStart + bottext2 + bottextEnd);
+
+        $btntype = 'three_situ';
     });
 } // end 버튼 부르는 함수
 

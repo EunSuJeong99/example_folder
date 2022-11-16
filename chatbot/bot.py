@@ -15,6 +15,7 @@ from models.intent.YNModel import YNModel
 from models.ner.NerModel import NerModel
 from utils.FindAnswer import FindAnswer
 from utils.FindMoney import FindMoney
+from utils.FindFood import FindFood
 from utils.FindYN import FindYN
 
 
@@ -87,8 +88,41 @@ def to_client(conn, addr, params):
             conn.send(message.encode())  # responses
 
             return
+
+        # 기분, 날씨, 상황일 때 여기 들어온다
+        if btntype == 'three_situ':
+            if intent_name == '기분' or intent_name == '날씨' or intent_name == '상황':
+                # 기분, 날씨, 상황 가져오기
+                if intent_name == '기분':
+                    si_label = feel.predict_class(query)
+                elif intent_name == '날씨':
+                    si_label = weather.predict_class(query)
+                elif intent_name == '상황':
+                    si_label = situation.predict_class(query)
+
+                print(intent_name)
+
+                # 음식 검색해오기
+                try:
+                    findfood = FindFood(db)
+                    answer = findfood.searchFood(intent_name, si_label)      
+                    answer = answer + "는(은) 어떠세요?"
+                except:
+                    answer = "밥은...그냥 아무거나 먹어요"
+                
+                sent_json_data_str = {    # response 할 JSON 객체 준비
+                    "Query" : query,
+                    "Answer": answer,
+                    "Intent": intent_name
+                }
+                
+                message = json.dumps(sent_json_data_str)
+                conn.send(message.encode())  # responses
+
+                return
+
         
-# 예산에 대한 음식 가져오기
+        # 예산에 대한 음식 가져오기
         if btntype == 'money':
             if query.isdigit():
                 query = int(query)
