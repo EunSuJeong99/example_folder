@@ -1,4 +1,5 @@
 
+
 $(function(){
 
     $(document).click(function(event){
@@ -16,12 +17,14 @@ $(function(){
     // SEND 버튼을 누르거나
     $("#sendbtn").click(function(){
         send_message();
+        
     });
 
     // ENTER key 가 눌리면
     $("#chattext").keyup(function(event){
         if(event.keyCode == 13){
             send_message();
+            
         }
     });
 
@@ -30,7 +33,7 @@ $(function(){
 // 챗봇 인사
 function onload() {
     $chatbox = $("#chatbox");
-    $result_form = $("#result_form");
+    $result_form = $("#result_from");
 
     firstTxt = "안녕하세요 relu 챗봇입니다."
 
@@ -44,19 +47,19 @@ function onload() {
 
     // 스크롤 조정하기
     $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
-   
+
     // 먼저 입력했던 내용은 지우기
     $("#chattext").val("");
     $("#chattext").focus();
 
 }  // end 챗봇 인사
 
+
 var bottext1
+
 // 기능 버튼 부르는 함수
 function btnCall() {
 
-    // btntype변수
-    $btntype = "";
 
     bottextStart = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>";
     bottextEnd = "</span></div>";
@@ -71,7 +74,8 @@ function btnCall() {
 
     $("#btn1").click(function(){
         bottext = "메뉴추천 기능을 시작하겠습니다.";
-        $chatbox.append(bottextStart + bottext  + bottextEnd);
+
+        $chatbox.append(bottextStart + bottext + bottextEnd);
 
         bottext2 = "1.양식 2.중식 3.한식 4.일식 5.디저트  / 1~5번에서 하나를 입력해주세요."
         bottext3 = "ex)양식  /  양식 추천해줘"
@@ -81,7 +85,8 @@ function btnCall() {
         setTimeout(function() {
             $chatbox.append(bottextStart + bottext3 + bottextEnd);
         }, 1000);
-        bottext1=bottext
+
+        bottext1 = bottext
     });
 
     $("#btn2").click(function(){
@@ -102,11 +107,9 @@ function btnCall() {
 
     $("#btn4").click(function(){
         bottext = "예산추천 기능을 시작하겠습니다.";
-
-        $btntype = "money"   // 예산 추천 기능은 money를 넘겨줌
-
+        swit = true  // 여기서 true면 bot_type 변경
         $chatbox.append(bottextStart + bottext + bottextEnd);
-
+        
         bottext2 = "1인당 예산을 입력해주세요. ex)10000"
         setTimeout(function() {
             $chatbox.append(bottextStart + bottext2 + bottextEnd);
@@ -118,16 +121,15 @@ function btnCall() {
 
         $chatbox.append(bottextStart + bottext + bottextEnd);
 
+        
         bottext2 = "원하는 레시피의 음식명을 입력해주세요!"
         setTimeout(function() {
             $chatbox.append(bottextStart + bottext2 + bottextEnd);
         }, 1000);
         bottext1="원하는 레시피의 음식명을 입력해주세요!"
-
     });
-} 
+} // end 버튼 부르는 함수
 
-// end 버튼 부르는 함수
 function send_message(){
     const chattext = $("#chattext").val().trim();
 
@@ -145,7 +147,6 @@ function send_message(){
     const jsonData = {
         query: chattext,
         bottype: "WebClient",
-        btntype: $btntype
     };
 
     $.ajax({
@@ -159,35 +160,46 @@ function send_message(){
             // response.Answer 에 챗봇의 응답메세지가 담겨 있다
             console.log(response)
             $chatbox = $("#chatbox");
-           
 
             // 답변 출력
             bottext = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
             $chatbox.append(bottext);
             
+            
 
             // 스크롤 조정하기
             $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
-            
+
             // 먼저 입력했던 내용은 지우기
             $("#chattext").val("");
             $("#chattext").focus();
         },
     });
 
+
+    
     let $chat=$('#chat');
     function chat(){
         $chat
             .animate({'bottom':'15px'},500)
             .animate({'bottom':'25px'},500,loopBoat);
     }
-    if (bottext1=='메뉴추천 기능을 시작하겠습니다.'){
+
+
+
+
+    if (bottext1 == "메뉴추천 기능을 시작하겠습니다."){
         mapt(chattext)
-    }
-    else if (bottext1=="원하는 레시피의 음식명을 입력해주세요!"){
+    }else if (bottext1=="원하는 레시피의 음식명을 입력해주세요!"){
         recipe()
     }
+
+
 } // end 
+
+
+
+
 
 function mapt(chattext){
     if (chattext.indexOf("식") != -1){
@@ -204,19 +216,24 @@ function mapt(chattext){
     }
 }
 
+
+
+
 var map, marker;
 var markerArr = [];
 
 function initTmap(category, location){
 
+    $("#result_form").html("");
+    
    callTmp(category, location)
 
     // 1. 지도 띄우기
    map = new Tmapv2.Map("map_div", {
        center: new Tmapv2.LatLng(37.4995811, 127.0338292),   // 역삼역
        width : "300px",
-       height : "800px",
-       zoom : 10,
+       height : "700px",
+       zoom : 17,
        zoomControl : true,
        scrollwheel : true
        
@@ -231,7 +248,7 @@ function initTmap(category, location){
            url:"https://apis.openapi.sk.com/tmap/pois?version=1&format=json&callback=result",
            async:false,
            data:{
-               "appKey" : "l7xxd9cd26704b094c58a40c219b5f9e62b2",
+               "appKey" : "l7xx9d2797cd120541969ed28d3107a096d1",
                "searchKeyword" : searchKeyword,
                "resCoordType" : "EPSG3857",
                "reqCoordType" : "WGS84GEO",
@@ -294,17 +311,21 @@ function initTmap(category, location){
 
 function callTmp(category, location){
 
-    // m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + category +"><button id='btn_select'>적용하기</button></div>"+"<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar' style='background-color : rgb(209, 209, 19)'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
-    m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + category +"><button id='btn_select'>적용하기</button></div>"+"<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar' style='background-color : rgb(209, 209, 19)'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
+    m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + category +"><button id='btn_select'>적용하기</button></div>"+"<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
+
 
     $result_form = $("#result_form");
 
     $result_form.append(m1)
-    // $result_form.append(m2)
+    
 
 }
 
- function popOpen() {
+
+// -----------------------------------------------------------------------
+
+
+function popOpen() {
 
     var modalPop = $('.modal-wrap');
     var modalBg = $('.modal-bg'); 
@@ -326,15 +347,15 @@ function callTmp(category, location){
 function recipe(){
     var pageNum = 1;
 
-    // $("#sendbtn").click(function() {
+   
+    
     $("#result_form").html("");
     $.ajax({
         method: "GET",
         url: "https://dapi.kakao.com/v2/search/vclip",
         data: { query: $("#chattext").val()+'레시피', page: pageNum},
         headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"}
-    })
-    .done(function (msg) {
+    }).done(function (msg) {
         console.log(msg);
         for (var i = 0; i < 4; i++){
             $("#result_form").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
@@ -342,10 +363,10 @@ function recipe(){
             $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
         }
     });
+    
 }
 
 
-    
 $(function(){
 $("#confirm").click(function(){
 modalClose(); //모달 닫기 함수 호출
