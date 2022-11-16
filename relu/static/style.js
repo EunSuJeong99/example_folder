@@ -326,7 +326,7 @@ function initTmap(category, location){
 
 function callTmp(category, location){
 
-    m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + category +"><button id='btn_select'>적용하기</button></div>"+"<div><div style='width: 30%; float:left;''><div class='title'><strong>Search</strong> Results</div><div class='rst_wrap'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div></div><div id='map_div' class='map_wrap' style='float:left'></div></div>"
+    m1 = m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + '_'+ category +"><button style='border:0;background-color:violet' id='btn_select'>적용하기</button></div>"+"<div id='map_div' class='map_wrap' style='float:left'></div><div><div style='width: 30%; float:left;''><div class='title'><strong>Search Results</strong></div></div></div>"+"<div class='rst_wrap'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div>"
 
 
     $result_form = $("#result_form");
