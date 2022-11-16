@@ -93,7 +93,7 @@ function btnCall() {
 
     $("#btn2").click(function(){
         bottext = "주변가게 기능을 시작하겠습니다.";
-
+        $btntype = 'store';
         $chatbox.append(bottextStart + bottext + bottextEnd);
         bottext = "현재 위치가 어디신가요?";
         setTimeout(function() {
@@ -180,7 +180,22 @@ function send_message(){
             bottext = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
             $chatbox.append(bottext);
             
-            
+            if ($btntype == 'store' && response.Intent == '위치') {
+                bottext = "드시고 싶은 음식이 있으신가요?";
+                setTimeout(function() {
+                    $chatbox.append(bottextStart + bottext + bottextEnd);
+                }, 1600);        
+                loc = response.NER.split(',')[0].slice(3,-1)
+                console.log(loc)
+            } else if ($btntype == 'store' && response.Intent == '음식') {
+                console.log(response.NER.split(',')[0].slice(3,-1))
+                initTmap(response.NER.split(',')[0].slice(3,-1), loc)
+            } else if ($btntype == 'store' && (response.Intent == '기분' || response.Intent == '상황' || response.Intent == '날씨')) {
+                console.log(response.Answer.slice(0,-10))
+                a = response.Answer.slice(0,-10)
+            } else if ($btntype == 'store' && response.Answer == '이에 맞는 음식을 추천해드릴게요!') {
+                initTmap(a, loc)
+            }
 
             // 스크롤 조정하기
             $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
