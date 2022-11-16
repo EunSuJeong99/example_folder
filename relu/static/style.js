@@ -77,6 +77,7 @@ function btnCall() {
         setTimeout(function() {
             $chatbox.append(bottextStart + bottext3 + bottextEnd);
         }, 1000);
+        bottext1=bottext
     });
 
     $("#btn2").click(function(){
@@ -173,14 +174,28 @@ function send_message(){
             .animate({'bottom':'15px'},500)
             .animate({'bottom':'25px'},500,loopBoat);
     }
-
-    if (bottext1=="원하는 레시피의 음식명을 입력해주세요!"){
+    if (bottext1=='메뉴추천 기능을 시작하겠습니다.'){
+        mapt(chattext)
+    }
+    else if (bottext1=="원하는 레시피의 음식명을 입력해주세요!"){
         recipe()
     }
 } // end 
 
+function mapt(chattext){
+    if (chattext.indexOf("식") != -1){
+        categorychat = chattext
+    }
 
 
+    if (chattext.indexOf("역") != -1){
+        locationchat = chattext
+        initTmap(categorychat, locationchat)
+    }else if (chattext.indexOf("동") != -1){
+        locationchat = chattext
+        initTmap(categorychat, locationchat)
+    }
+}
 
 var map, marker;
 var markerArr = [];
@@ -209,7 +224,7 @@ function initTmap(category, location){
            url:"https://apis.openapi.sk.com/tmap/pois?version=1&format=json&callback=result",
            async:false,
            data:{
-               "appKey" : "api 발급 입력",
+               "appKey" : "l7xxd9cd26704b094c58a40c219b5f9e62b2",
                "searchKeyword" : searchKeyword,
                "resCoordType" : "EPSG3857",
                "reqCoordType" : "WGS84GEO",
@@ -304,34 +319,22 @@ function callTmp(category, location){
 function recipe(){
     var pageNum = 1;
 
-    $("#sendbtn").click(function() {
-        $("#result_form").html("");
-        $.ajax({
-            method: "GET",
-            url: "https://dapi.kakao.com/v2/search/vclip",
-            data: { query: $("#chattext").val()+'레시피', page: pageNum},
-            headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"}
-        })
-        .done(function (msg) {
-            console.log(msg);
-            for (var i = 0; i < 4; i++){
-                $("#result_form").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
-                $("#result_form").append("<strong>저자 : </strong> " + msg.documents[i].author + "<br>");
-                $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
-            }
-        });
-        // $("#sendbtn").click(function(){
-        //     send_message();
-        // });
-    
-        // // ENTER key 가 눌리면
-        $("#chattext").keyup(function(event){
-            if(event.keyCode == 13){
-                send_message();
-            }
-        });
+    // $("#sendbtn").click(function() {
+    $("#result_form").html("");
+    $.ajax({
+        method: "GET",
+        url: "https://dapi.kakao.com/v2/search/vclip",
+        data: { query: $("#chattext").val()+'레시피', page: pageNum},
+        headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"}
     })
-
+    .done(function (msg) {
+        console.log(msg);
+        for (var i = 0; i < 4; i++){
+            $("#result_form").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
+            $("#result_form").append("<strong>저자 : </strong> " + msg.documents[i].author + "<br>");
+            $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
+        }
+    });
 }
 
 
