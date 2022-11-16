@@ -209,7 +209,7 @@ function initTmap(category, location){
            url:"https://apis.openapi.sk.com/tmap/pois?version=1&format=json&callback=result",
            async:false,
            data:{
-               "appKey" : "l7xxd9cd26704b094c58a40c219b5f9e62b2",
+               "appKey" : "api 발급 입력",
                "searchKeyword" : searchKeyword,
                "resCoordType" : "EPSG3857",
                "reqCoordType" : "WGS84GEO",
