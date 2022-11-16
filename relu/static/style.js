@@ -246,8 +246,8 @@ function initTmap(category, location){
     // 1. 지도 띄우기
    map = new Tmapv2.Map("map_div", {
        center: new Tmapv2.LatLng(37.4995811, 127.0338292),   // 역삼역
-       width : "300px",
-       height : "700px",
+       width : "100%",
+       height : "450px",
        zoom : 17,
        zoomControl : true,
        scrollwheel : true
@@ -333,7 +333,7 @@ function initTmap(category, location){
 
 function callTmp(category, location){
 
-    m1 = m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + '_'+ category +"><button style='border:0;background-color:violet' id='btn_select'>적용하기</button></div>"+"<div id='map_div' class='map_wrap' style='float:left'></div><div><div style='width: 30%; float:left;''><div class='title'><strong>Search Results</strong></div></div></div>"+"<div class='rst_wrap'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div>"
+    m1 = m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + '_'+ category +"><button style='border:0;background-color:violet' id='btn_select'>적용하기</button></div>"+"<div id='map_div' class='map_wrap' style='float:left'></div><div><div style='width: 30%; float:left;''><div class='title'><strong>Search Results</strong></div></div></div>"+"<div class='rst_wrap'  style='height: 300px; overflow: auto; position: relative; width: 100%'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div>"
 
 
     $result_form = $("#result_form");
