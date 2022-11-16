@@ -35,7 +35,7 @@ function onload() {
     $chatbox = $("#chatbox");
     $result_form = $("#result_from");
 
-    firstTxt = "안녕하세요 relu 챗봇입니다."
+    firstTxt = "안녕하세요 ReLu 챗봇입니다."
 
     // 인사, 이미지 출력
     helloImg = "<img style='margin:0;' src='/static/img/hello.gif'>";
