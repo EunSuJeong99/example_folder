@@ -66,28 +66,39 @@ def to_client(conn, addr, params):
         # 의도 파악
         intent_predict = intent.predict_class(query)
         intent_name = intent.labels[intent_predict]
+        print("의도 파악: "+ intent_name)
 
         # 개체명 파악
         ner_predicts = ner.predict(query)
         ner_tags = ner.predict_tags(query)
 
-        if intent_name == "추가":
-            yn_label = yn.predict_class(query)
-            try:
-                find = FindYN(db)
-                answer = find.searchYN(yn_label)     
-            except:
-                answer = "에러"
-            
-            sent_json_data_str = {    # response 할 JSON 객체 준비
-                "Query" : query,
-                'Answer' : answer
-            }
-            
-            message = json.dumps(sent_json_data_str)
-            conn.send(message.encode())  # responses
 
-            return
+        # 상황별에서의 추가정보
+        situ_plus = recv_json_data['Situ_Plus']
+        plus_intent_predict = intent.predict_class(situ_plus)
+        plus_intent_name = intent.labels[plus_intent_predict]
+
+        print("상황별의 추가 의도 파악: "+ plus_intent_name)
+
+
+
+        # if intent_name == "추가":
+        #     yn_label = yn.predict_class(query)
+        #     try:
+        #         find = FindYN(db)
+        #         answer = find.searchYN(yn_label)     
+        #     except:
+        #         answer = "에러"
+            
+        #     sent_json_data_str = {    # response 할 JSON 객체 준비
+        #         "Query" : query,
+        #         'Answer' : answer
+        #     }
+            
+        #     message = json.dumps(sent_json_data_str)
+        #     conn.send(message.encode())  # responses
+
+        #     return
 
         # 기분, 날씨, 상황일 때 여기 들어온다
         if btntype == 'three_situ' or btntype == 'store':
@@ -120,6 +131,64 @@ def to_client(conn, addr, params):
                 conn.send(message.encode())  # responses
 
                 return
+
+        if intent_name == "추가" and btntype == '' and situ_plus != '':   # 추천한 음식이 맘에 안들때
+
+            print("여기에 들어왔다")
+
+            yn_label = yn.predict_class(query)
+            str_yn_label = str(yn_label)
+
+            print('추가 라벨: ' + str(str_yn_label))
+            
+            if str_yn_label == '0':
+                print('라벨이 0이야')
+
+                if plus_intent_name == '기분' or plus_intent_name == '날씨' or plus_intent_name == '상황':
+                    # 기분, 날씨, 상황 가져오기
+                    if plus_intent_name == '기분':
+                        si_label = feel.predict_class(query)
+                    elif plus_intent_name == '날씨':
+                        si_label = weather.predict_class(query)
+                    elif plus_intent_name == '상황':
+                        si_label = situation.predict_class(query)
+
+                    print(intent_name)
+
+                    # 음식 검색해오기
+                    try:
+                        findfood = FindFood(db)
+                        answer = findfood.searchFood(plus_intent_name, si_label)      
+                        answer = "그럼 " + answer + "는(은) 어떠세요?"
+                    except:
+                        answer = "찾기 힘드네요"
+                    
+                    sent_json_data_str = {    # response 할 JSON 객체 준비
+                        "Query" : query,
+                        "Answer": answer,
+                        "Intent": intent_name
+                    }
+                    
+                    message = json.dumps(sent_json_data_str)
+                    conn.send(message.encode())  # responses
+
+                    return
+            
+            elif str_yn_label == '1':
+
+                answer = "맛있게 드세요!!!"
+
+                sent_json_data_str = {    # response 할 JSON 객체 준비
+                    "Query" : query,
+                    "Answer": answer,
+                    "Intent": intent_name
+                }
+                
+                message = json.dumps(sent_json_data_str)
+                conn.send(message.encode())  # responses
+
+                return
+
 
         
         # 예산에 대한 음식 가져오기
