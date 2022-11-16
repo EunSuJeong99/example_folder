@@ -35,7 +35,7 @@ function onload() {
     $chatbox = $("#chatbox");
     $result_form = $("#result_from");
 
-    firstTxt = "안녕하세요 relu 챗봇입니다."
+    firstTxt = "안녕하세요 ReLu 챗봇입니다."
 
     // 인사, 이미지 출력
     helloImg = "<img style='margin:0;' src='/static/img/hello.gif'>";
@@ -78,6 +78,8 @@ function btnCall() {
     $("#btn1").click(function(){
         bottext = "메뉴추천 기능을 시작하겠습니다.";
 
+        $btntype = 'category';
+
         $chatbox.append(bottextStart + bottext + bottextEnd);
 
         bottext2 = "1.양식 2.중식 3.한식 4.일식 5.디저트  / 1~5번에서 하나를 입력해주세요."
@@ -94,7 +96,7 @@ function btnCall() {
 
     $("#btn2").click(function(){
         bottext = "주변가게 기능을 시작하겠습니다.";
-
+        $btntype = 'store';
         $chatbox.append(bottextStart + bottext + bottextEnd);
         bottext = "현재 위치가 어디신가요?";
         setTimeout(function() {
@@ -189,7 +191,22 @@ function send_message(){
             bottext = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + response.Answer + "</span></div>";
             $chatbox.append(bottext);
             
-            
+            if ($btntype == 'store' && response.Intent == '위치') {
+                bottext = "드시고 싶은 음식이 있으신가요?";
+                setTimeout(function() {
+                    $chatbox.append(bottextStart + bottext + bottextEnd);
+                }, 1600);        
+                loc = response.NER.split(',')[0].slice(3,-1)
+                console.log(loc)
+            } else if ($btntype == 'store' && response.Intent == '음식') {
+                console.log(response.NER.split(',')[0].slice(3,-1))
+                initTmap(response.NER.split(',')[0].slice(3,-1), loc)
+            } else if ($btntype == 'store' && (response.Intent == '기분' || response.Intent == '상황' || response.Intent == '날씨')) {
+                console.log(response.Answer.slice(0,-10))
+                a = response.Answer.slice(0,-10)
+            } else if ($btntype == 'store' && response.Answer == '이에 맞는 음식을 추천해드릴게요!') {
+                initTmap(a, loc)
+            }
 
             // 스크롤 조정하기
             $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
@@ -228,6 +245,8 @@ function send_message(){
 function mapt(chattext){
     if (chattext.indexOf("식") != -1){
         categorychat = chattext
+    }else if (chattext.indexOf("디저트") != -1){
+        categorychat = chattext
     }
 
 
@@ -255,8 +274,8 @@ function initTmap(category, location){
     // 1. 지도 띄우기
    map = new Tmapv2.Map("map_div", {
        center: new Tmapv2.LatLng(37.4995811, 127.0338292),   // 역삼역
-       width : "300px",
-       height : "700px",
+       width : "100%",
+       height : "450px",
        zoom : 17,
        zoomControl : true,
        scrollwheel : true
@@ -342,7 +361,7 @@ function initTmap(category, location){
 
 function callTmp(category, location){
 
-    m1 = m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + '_'+ category +"><button style='border:0;background-color:violet' id='btn_select'>적용하기</button></div>"+"<div id='map_div' class='map_wrap' style='float:left'></div><div><div style='width: 30%; float:left;''><div class='title'><strong>Search Results</strong></div></div></div>"+"<div class='rst_wrap'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div>"
+    m1 = m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + '_'+ category +"><button style='border:0;background-color:violet' id='btn_select'>적용하기</button></div>"+"<div id='map_div' class='map_wrap' style='float:left'></div><div><div style='width: 30%; float:left;''><div class='title'><strong>Search Results</strong></div></div></div>"+"<div class='rst_wrap'  style='height: 300px; overflow: auto; position: relative; width: 100%'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div>"
 
 
     $result_form = $("#result_form");

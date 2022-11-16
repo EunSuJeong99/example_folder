@@ -101,7 +101,7 @@ def to_client(conn, addr, params):
         #     return
 
         # 기분, 날씨, 상황일 때 여기 들어온다
-        if btntype == 'three_situ':
+        if btntype == 'three_situ' or btntype == 'store':
             if intent_name == '기분' or intent_name == '날씨' or intent_name == '상황':
                 # 기분, 날씨, 상황 가져오기
                 if intent_name == '기분':
