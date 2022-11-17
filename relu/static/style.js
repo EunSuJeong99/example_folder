@@ -32,12 +32,17 @@ $(function(){
 function onload() {
     $chatbox = $("#chatbox");
     $result_form = $("#result_from");
+    $chatbot=$("#chatbot");
+    $gk=$("#gk");
 
     firstTxt = "안녕하세요 ReLu 챗봇입니다."
 
     // 인사, 이미지 출력
     helloImg = "<img style='margin:0;' src='/static/img/hello.gif'>";
     bottext = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + firstTxt + "</span></div>";
+    backimg="<img style='margin:0;width:100%;height:800px;border-radius:2%' src='/static/back_img/fd.gif'>";
+    
+    $gk.append(backimg);
     $chatbox.append(helloImg);
     $chatbox.append(bottext);
 
@@ -450,7 +455,7 @@ function recipe(){
         headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"}
     }).done(function (msg) {
         console.log(msg);
-        for (var i = 0; i < 4; i++){
+        for (var i = 0; i < 5; i++){
             $("#result_form").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
             $("#result_form").append("<strong>저자 : </strong> " + msg.documents[i].author + "<br>");
             $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
