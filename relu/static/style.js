@@ -160,11 +160,10 @@ function send_message(){
 
 
     if($btntype == 'three_situ' && $situ_plus != "") {
-        $btntype == 'plus';
+        $btntype = 'plus';
 
-    } else if($btntype == 'three_situ') {
+    }else if($btntype == 'three_situ') {
         $situ_plus = $("#chattext").val();  // 상황별에서 기억될 챗 따로 담음
-        print("상황별 처음 여기를 들어왔다")
     }
 
 
