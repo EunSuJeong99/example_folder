@@ -76,13 +76,16 @@ def to_client(conn, addr, params):
 
         # 추가정보❗
         plus = recv_json_data['Plus']
+        print(plus)
 
         if plus.isdigit():
             plus_money = int(plus)    # 추가 money에 관한 정보
+            plus_intent_name = ""
         
         else:   # 추가 상황별에 관한 정보
             plus_intent_predict = intent.predict_class(plus)
             plus_intent_name = intent.labels[plus_intent_predict]
+            plus_money = ""
 
             print("상황별의 추가 의도 파악: "+ plus_intent_name)
 
@@ -154,8 +157,28 @@ def to_client(conn, addr, params):
             if str_yn_label == '0':
                 print('라벨이 0이야')
 
+                # 예산 추천에서 다시 추천
+                if type(plus_money) == int:
+
+                    # 음식 검색해오기
+                    try:
+                        findmoney = FindMoney(db)
+                        answer = findmoney.searchMoney(plus_money)
+                        answer = "그럼" + answer + "는(은) 어떠세요?"
+                    except:
+                        answer = "돈이 없어요?"
+                    
+                    sent_json_data_str = {    # response 할 JSON 객체 준비
+                        "Query" : query,
+                        "Answer": answer
+                    }
+                    
+                    message = json.dumps(sent_json_data_str)
+                    conn.send(message.encode())  # responses
+                    return
+
                 # 상황별에서의 다시 추천
-                if plus_intent_name == '기분' or plus_intent_name == '날씨' or plus_intent_name == '상황':
+                elif plus_intent_name == '기분' or plus_intent_name == '날씨' or plus_intent_name == '상황':
                     # 기분, 날씨, 상황 가져오기
                     if plus_intent_name == '기분':
                         si_label = feel.predict_class(query)
@@ -185,26 +208,6 @@ def to_client(conn, addr, params):
 
                     return
 
-                # 예산 추천에서 다시 추천
-                elif type(plus_money) == int:
-                    print("예산: " + plus_money)
-
-                    # 음식 검색해오기
-                    try:
-                        findmoney = FindMoney(db)
-                        answer = findmoney.searchMoney(plus_money)
-                        answer = "그럼" + answer + "는(은) 어떠세요?"
-                    except:
-                        answer = "돈이 없어요?"
-                    
-                    sent_json_data_str = {    # response 할 JSON 객체 준비
-                        "Query" : query,
-                        "Answer": answer
-                    }
-                    
-                    message = json.dumps(sent_json_data_str)
-                    conn.send(message.encode())  # responses
-                    return
             
             elif str_yn_label == '1':
 
