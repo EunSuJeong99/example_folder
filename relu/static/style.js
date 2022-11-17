@@ -145,8 +145,14 @@ function btnCall() {
     });
 } // end 버튼 부르는 함수
 
+
+var rebtncall
+
+
 function send_message(){
     const chattext = $("#chattext").val().trim();
+
+    rebtncall = chattext
 
     // 입력한 메세지가 없으면 리턴
     if(chattext == ""){
@@ -228,6 +234,7 @@ function send_message(){
     });
 
 
+   
     
     let $chat=$('#chat');
     function chat(){
@@ -237,6 +244,10 @@ function send_message(){
     }
 
 
+    if (rebtncall=="버튼"){ // 버튼 다시 불러오기
+        rebtn(bottext1)
+        btnCall()
+    }
 
 
     if (bottext1 == "메뉴추천 기능을 시작하겠습니다."){
@@ -245,8 +256,27 @@ function send_message(){
         recipe()
     }
 
+    
 
 } // end 
+
+
+
+
+
+function rebtn(chattext){ // 기존 버튼 삭제
+    
+    $("*").remove("#btn1");
+    $("*").remove("#btn2");
+    $("*").remove("#btn3");
+    $("*").remove("#btn4");
+    $("*").remove("#btn5");
+    $("*").remove("#btn6");
+
+    // 단순한 버튼의 새로운 생성이 아닌 btnCall 에 있는 다른 함수와 연계된 것도 고려해야한다.
+}
+
+
 
 
 
