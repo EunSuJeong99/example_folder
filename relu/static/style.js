@@ -244,10 +244,7 @@ function send_message(){
     }
 
 
-    if (rebtncall=="버튼"){ // 버튼 다시 불러오기
-        rebtn(bottext1)
-        btnCall()
-    }
+    
 
 
     if (bottext1 == "메뉴추천 기능을 시작하겠습니다."){
@@ -256,7 +253,10 @@ function send_message(){
         recipe()
     }
 
-    
+    if (rebtncall=="버튼"){ // 버튼 다시 불러오기
+        rebtn(bottext1)
+        btnCall()
+    }
 
 } // end 
 
@@ -266,13 +266,21 @@ function send_message(){
 
 function rebtn(chattext){ // 기존 버튼 삭제
     
-    $("*").remove("#btn1");
-    $("*").remove("#btn2");
-    $("*").remove("#btn3");
-    $("*").remove("#btn4");
-    $("*").remove("#btn5");
-    $("*").remove("#btn6");
+    // $("*").remove("#btn1");
+    // $("*").remove("#btn2");
+    // $("*").remove("#btn3");
+    // $("*").remove("#btn4");
+    // $("*").remove("#btn5");
+    // $("*").remove("#btn6");
 
+    $("#btn1").attr('id','btnx');
+    $("#btn2").attr('id','btnx');
+    $("#btn3").attr('id','btnx');
+    $("#btn4").attr('id','btnx');
+    $("#btn5").attr('id','btnx');
+    $("#btn6").attr('id','btnx');
+    
+    
     // 단순한 버튼의 새로운 생성이 아닌 btnCall 에 있는 다른 함수와 연계된 것도 고려해야한다.
 }
 
