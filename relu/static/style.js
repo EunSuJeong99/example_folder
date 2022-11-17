@@ -17,14 +17,14 @@ $(function(){
     // SEND 버튼을 누르거나
     $("#sendbtn").click(function(){
         send_message();
-        $btntype = "";
+        // $btntype = "";
     });
 
     // ENTER key 가 눌리면
     $("#chattext").keyup(function(event){
         if(event.keyCode == 13){
             send_message();
-            $btntype = "";
+            // $btntype = "";
         }
     });
 
