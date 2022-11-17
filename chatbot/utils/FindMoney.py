@@ -13,7 +13,7 @@ class FindMoney:
             where = f"where m_money >= {start_money} and m_money <= {end_money}"
 
             # 동일한 답변이 2개 이상인 경우, 랜덤으로 선택
-            sql = sql + where + " order by rand() limit 5"  
+            sql = sql + where + " order by rand() limit 1"  
 
             cc = self.db.select_all(sql)
 

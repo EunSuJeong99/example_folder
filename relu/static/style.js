@@ -59,7 +59,7 @@ var bottext1
 function btnCall() {
 
     $btntype = "";
-    $situ_plus = "";    // 상황별에서 이전에 입력한 것을 기억하기 위해
+    $plus = "";    // 이전에 입력한 것을 기억하기 위해
 
     bottextStart = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>";
     bottextEnd = "</span></div>";
@@ -159,11 +159,20 @@ function send_message(){
     $("#chatbox").append(addtext);    
 
 
-    if($btntype == 'three_situ' && $situ_plus != "") {
+    // 상황별 기능에서 사용
+    if($btntype == 'three_situ' && $plus != "" && isNaN($plus)) {
         $btntype = 'plus';
 
     }else if($btntype == 'three_situ') {
-        $situ_plus = $("#chattext").val();  // 상황별에서 기억될 챗 따로 담음
+        $plus = $("#chattext").val();  // 상황별에서 기억될 챗 따로 담음
+    }
+
+    // 예산 추천기능에서 사용
+    if($btntype == 'money' && !isNaN($plus)) {
+        $btntype = 'money_plus';
+
+    } else if($btntype == 'money') {
+        $plus = $("#chattext").val();
     }
 
 
@@ -173,7 +182,7 @@ function send_message(){
         query: chattext,
         bottype: "WebClient",
         btntype: $btntype,
-        situ_plus: $situ_plus   // 상황별의 추가정보
+        plus: $plus   // 상황별의 추가정보
     };
 
     $.ajax({
