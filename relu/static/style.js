@@ -60,6 +60,8 @@ function onload() {
 
 var bottext1
 
+var rebtncall
+
 // 기능 버튼 부르는 함수
 function btnCall() {
 
@@ -152,6 +154,8 @@ function btnCall() {
 
 function send_message(){
     const chattext = $("#chattext").val().trim();
+
+    rebtncall = chattext
 
     // 입력한 메세지가 없으면 리턴
     if(chattext == ""){
@@ -258,13 +262,6 @@ function send_message(){
 
 function rebtn(chattext){ // 기존 버튼 삭제
     
-    // $("*").remove("#btn1");
-    // $("*").remove("#btn2");
-    // $("*").remove("#btn3");
-    // $("*").remove("#btn4");
-    // $("*").remove("#btn5");
-    // $("*").remove("#btn6");
-
     $("#btn1").attr('id','btnx');
     $("#btn2").attr('id','btnx');
     $("#btn3").attr('id','btnx');
