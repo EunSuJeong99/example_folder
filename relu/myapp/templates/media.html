@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
     <title>방송맛집</title>
     <style>
+        *{
+    font-family: 'Gamja Flower', cursive;
+}
     #circle{
 	position: absolute;
 	width: 20px;
@@ -49,12 +55,12 @@ $(document).ready(function(){
     <div id="circle"></div>
 
     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="background-color:yellow;height:50px">
-        <li><a href="/index/" class="nav-link px-2 link-dark" style="font-size:22px;color:gray">HOME</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <li><a href="/article/" class="nav-link px-2 link-dark" style="font-size:22px;color:gray">언론기사</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <li><a href="/map/" class="nav-link px-2 link-dark"style="font-size:22px;color:gray">맛지도</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <li><a href="/media/" class="nav-link px-2 link-dark"style="font-size:22px;color:gray">방송맛집</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <li><a href="/blog/" class="nav-link px-2 link-dark"style="font-size:22px;color:gray">블로그픽</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <li><a href="/house/" class="nav-link px-2 link-dark"style="font-size:22px;color:gray">맛집영상</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li><a href="/index/" class="nav-link px-2 link-dark" style="font-size:28px;color:gray">HOME</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li><a href="/article/" class="nav-link px-2 link-dark" style="font-size:28px;color:gray">언론기사</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li><a href="/map/" class="nav-link px-2 link-dark"style="font-size:28px;color:gray">맛지도</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li><a href="/media/" class="nav-link px-2 link-dark"style="font-size:28px;color:gray">방송맛집</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li><a href="/blog/" class="nav-link px-2 link-dark"style="font-size:28px;color:gray">블로그픽</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li><a href="/house/" class="nav-link px-2 link-dark"style="font-size:28px;color:gray">맛집영상</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </ul><br><br>
     <div align="center" width="50%">
        
@@ -62,105 +68,117 @@ $(document).ready(function(){
         <b style="font-size:50px;color:gray">방송맛집</b></div>
         <br><br>
     <div align="center">
-        <table  style="width:900px">
+        <table  style="width:900px;font-size:20px;">
 
             <tr>
                 <td style="width:30%;height:100%"> 
-                    <img src="/static/img/dack.png" style="width:100%;height:100%">
+                    <img src="/static/img/dack.png" style="width:300px;height:300px;">
                 </td>
                 <td style="width:60%;height:70%"><b>1. 인기있는 이유가 있다? 촉촉한 시금치 통닭, 문래 ‘양키통닭’</b><br>
-                    위치: 서울 영등포구 도림로139길 13<br>
-                    영업시간: 평일 17:00 - 23:30, 토요일 16:00 - 24:00, 일요일 16:00 - 23:00<br>
-                    가격: 오리지널 시금치 통닭 26,000원, 페퍼 크림 통닭 26,000원,<br> 머쉬룸 크림 통닭 26,000원<br>
+                    위치 : 서울 영등포구 도림로139길 13<br>
+                    영업시간 : 평일 17:00 - 23:30, 토요일 16:00 - 24:00, 일요일 16:00 - 23:00<br>
+                    가격 : 오리지널 시금치 통닭 26,000원, 페퍼 크림 통닭 26,000원,<br> 머쉬룸 크림 통닭 26,000원<br>
+                    <a href="https://www.youtube.com/watch?v=__xx378OSPU"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     
                 </td>
             </tr>
             <tr>
-                <td><img src="/static/img/gob.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/gob.png" style="width:300px;height:300px;"></td>
                 <td><b>2. 시끌벅적한 분위기에서 소주 한 잔, 서초 ‘교대곱창’</b><br>
-                    위치: 서울 서초구 서초중앙로 77<br>
-                    영업시간: 매일 12:00 - 23:00<br>
-                    가격: 대구매운탕(2인분) 26,000원<br>
-                    가격: 특양(180g) 21,000원, 곱창(190g) 22,000원, 대창(200g) 20,000원</td>
+                    위치 : 서울 서초구 서초중앙로 77<br>
+                    영업시간 : 매일 12:00 - 23:00<br>
+                    가격 : 대구매운탕(2인분) 26,000원<br>
+                    가격 : 특양(180g) 21,000원, 곱창(190g) 22,000원, 대창(200g) 20,000원<br>
+                    <a href="https://www.youtube.com/watch?v=yQuV8MDPvjM"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a></td>
             </tr>
             <tr>
-                <td><img src="/static/img/gimchi.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/gimchi.png" style="width:300px;height:300px;"></td>
                 <td><b>3. 고풍스러운 한옥에서 맛보는 돼비갈비찜, 종로구 '남도식객'</b><br>
-                    위치: 서울 종로구 인사동길 47-6<br>
-                    영업시간: 매일 10:00 - 21:00, 일요일 휴무<br>
-                    가격: 묵은지 갈비찜(1인) 10,000원, 간장양념갈비찜(1인) 10,000원, <br>손맛 소갈비찜(중) 40,000원<br>
+                    위치 : 서울 종로구 인사동길 47-6<br>
+                    영업시간 : 매일 10:00 - 21:00, 일요일 휴무<br>
+                    가격 : 묵은지 갈비찜(1인) 10,000원, 간장양념갈비찜(1인) 10,000원, <br>손맛 소갈비찜(중) 40,000원<br>
+                    <a href="https://www.youtube.com/watch?v=rt254QI3HSE"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr> 
             <tr>
-                <td><img src="/static/img/jock.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/jock.png" style="width:300px;height:300px;"></td>
                 <td><b>4. 뜯는 맛이 살아있는 미니불족, 논현동 '리북집'</b><br>
-                    위치: 서울 강남구 학동로2길 45<br>
-                    영업시간: 월-토 11:00 - 00:30, 일요일 11:00 - 23:00<br>
-                    가격: 족발(앞발) 38,000원, 냉채족발 38,000원, 매운족발(미니족) 35,000원<br>
+                    위치 : 서울 강남구 학동로2길 45<br>
+                    영업시간 : 월-토 11:00 - 00:30, 일요일 11:00 - 23:00<br>
+                    가격 : 족발(앞발) 38,000원, 냉채족발 38,000원, 매운족발(미니족) 35,000원<br>
+                    <a href="https://www.youtube.com/watch?v=OwQX7sZzPo4"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>  
             <tr>
-                <td><img src="/static/img/jjam.png" style="width:100%;height:10%"></td>
+                <td><img src="/static/img/jjam.png" style="width:300px;height:300px;"></td>
                 <td><b>5. 빨간짬뽕 줄까 하얀짬뽕 줄까, 인천 '만다복'</b><br>
-                    위치: 인천 중구 차이나타운로 36<br>
-                    영업시간: 매일 11:00 - 21:00<br>
-                    가격: 특짬뽕 12,000원, 짬뽕 8,000원, 삼선짬뽕볶음면 9,000원<br>
+                    위치 : 인천 중구 차이나타운로 36<br>
+                    영업시간 : 매일 11:00 - 21:00<br>
+                    가격 : 특짬뽕 12,000원, 짬뽕 8,000원, 삼선짬뽕볶음면 9,000원<br>
+                    <a href="https://www.youtube.com/watch?v=4f1l2UpdZJQ"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>
             <tr>
-                <td><img src="/static/img/jang.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/jang.png" style="width:300px;height:300px;"></td>
                 <td><b>6. 20년 넘게 물리지 않는 맛, 서울역 '일미장어'</b><br>
-                    위치: 서울 용산구 후암로57길 35-15<br>
-                    영업시간: 월~금 11:30 - 21:00(B/T 13:30 - 17:30), 토 12:00 - 20:00(B/T 15:00 - 17:00), 일요일 휴무<br>
-                    가격: 장어구이정식 33,000원, 점심한정 장어덮밥(평일) 17,000원<br>
+                    위치 : 서울 용산구 후암로57길 35-15<br>
+                    영업시간 : 월~금 11:30 - 21:00(B/T 13:30 - 17:30), 토 12:00 - 20:00(B/T 15:00 - 17:00), 일요일 휴무<br>
+                    가격 : 장어구이정식 33,000원, 점심한정 장어덮밥(평일) 17,000원<br>
+                    <a href="https://www.youtube.com/watch?v=RGZ0Al5aXjc"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>
             <tr>
-                <td><img src="/static/img/mool.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/mool.png" style="width:300px;height:300px;"></td>
                 <td><b>7. 달큼하고 칼칼한 육수 맛, 논현동 ‘오메가강구항’</b><br>
-                    위치: 서울 강남구 봉은사로37길 9<br>
-                    영업시간: 영업시간: 매일 11:00 - 23:00<br>
-                    가격: 세꼬시(물가자미)물회 20,000원, 전복물회 25,000원, 모듬안주물회 40,000원
+                    위치 : 서울 강남구 봉은사로37길 9<br>
+                    영업시간 : 영업시간: 매일 11:00 - 23:00<br>
+                    가격 : 세꼬시(물가자미)물회 20,000원, 전복물회 25,000원, 모듬안주물회 40,000원<br>
+                    <a href="https://www.youtube.com/watch?v=uM5qCEaM7uQ"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>
             <tr>
-                <td><img src="/static/img/soon.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/soon.png" style="width:300px;height:300px;"></td>
                 <td><b>8. 부드럽고 고소한 대창순대, 을지로 ‘삼수갑산’</b><br>
-                    위치: 서울 중구 을지로20길 24<br>
-                    영업시간: 매일 11:30 - 22:00 (B.T 15:00 - 17:00), 일요일 휴무<br>
-                    가격: 순대국밥 8,000원, 순대정식 13,000원, 순대모듬 24,000원
+                    위치 : 서울 중구 을지로20길 24<br>
+                    영업시간 : 매일 11:30 - 22:00 (B.T 15:00 - 17:00), 일요일 휴무<br>
+                    가격 : 순대국밥 8,000원, 순대정식 13,000원, 순대모듬 24,000원<br>
+                    <a href="https://www.youtube.com/watch?v=8q75ubn8Z2g"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>
             <tr>
-                <td><img src="/static/img/zzim.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/zzim.png" style="width:300px;height:300px;"></td>
                 <td><b>9. 고소한 맛이 일품인 콩나물과 신선한 해물이 가득, 서울 송파 ‘가락골마산아구찜’</b><br>
-                    위치: 서울 송파구 송이로19길 3<br>
-                    운영시간: 매일 11:30 - 21:50(B/T 16:00 - 17:30), 일요일 휴무<br>
-                    가격: 해물찜/해물탕/낙지찜 55,000~65,000원, 아구탕/아구찜 50,000~60,000원
+                    위치 : 서울 송파구 송이로19길 3<br>
+                    운영시간 : 매일 11:30 - 21:50(B/T 16:00 - 17:30), 일요일 휴무<br>
+                    가격 : 해물찜/해물탕/낙지찜 55,000~65,000원, 아구탕/아구찜 50,000~60,000원<br>
+                    <a href="https://www.youtube.com/watch?v=D-yYGA6jEcc"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>
             <tr>
-                <td><img src="/static/img/sam.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/sam.png" style="width:300px;height:300px;"></td>
                 <td><b>10. 한옥 정취가 가득한, 용산 ‘강원정’</b><br>
-                    위치: 서울 용산구 원효로89길 13-10<br>
-                    영업시간: 매일 11:30 - 20:30 (B/T 14:30 - 17:30), 1,3,5번째 일요일 휴무<br>
-                    가격: 삼계탕 15,000원, 닭도리탕 35,000원
+                    위치 : 서울 용산구 원효로89길 13-10<br>
+                    영업시간 : 매일 11:30 - 20:30 (B/T 14:30 - 17:30), 1,3,5번째 일요일 휴무<br>
+                    가격 : 삼계탕 15,000원, 닭도리탕 35,000원<br>
+                    <a href="https://www.youtube.com/watch?v=hyXfsXXzkxM"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>
             <tr>
-                <td><img src="/static/img/all.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/all.png" style="width:300px;height:300px;"></td>
                 <td><b>11. 다진고기를 구워먹는 언양식 불고기, 왕십리 ‘최영희언양불고기’</b><br>
-                    위치: 서울 성동구 무학봉28길 21<br>
-                    영업시간: 매일 10:30 - 22:30<br>
-                    가격: 언양불고기(1인분) 15,000원, 전골불고기(1인분) 15,000원,<br> 오징어매콤불고기 20,000원
+                    위치 : 서울 성동구 무학봉28길 21<br>
+                    영업시간 : 매일 10:30 - 22:30<br>
+                    가격 : 언양불고기(1인분) 15,000원, 전골불고기(1인분) 15,000원,<br> 오징어매콤불고기 20,000원<br>
+                    <a href="https://www.youtube.com/watch?v=7n_ze6YeZI4"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>
             <tr>
-                <td><img src="/static/img/nang.png" style="width:100%;height:100%"></td>
+                <td><img src="/static/img/nang.png" style="width:300px;height:300px;"></td>
                 <td><b>12. 역사가 느껴지는 곳, 동대문 '오장동함흥냉면'</b><br>
-                    위치: 서울 중구 마른내로 108<br>
-                    영업시간: 매일 11:00 - 20:00, 화요일 휴무<br>
-                    가격: 회냉면 13,000원, 비빔냉면 13,000원, 물냉면 13,000원
+                    위치 : 서울 중구 마른내로 108<br>
+                    영업시간 : 매일 11:00 - 20:00, 화요일 휴무<br>
+                    가격 : 회냉면 13,000원, 비빔냉면 13,000원, 물냉면 13,000원<br>
+                    <a href="https://www.youtube.com/watch?v=gbj0-cH2xrM"><button type="button" style="border:0px;background-color:royalblue;color:white">방송보기!</button></a>
                     </td>
             </tr>
         </table>

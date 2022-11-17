@@ -32,12 +32,17 @@ $(function(){
 function onload() {
     $chatbox = $("#chatbox");
     $result_form = $("#result_from");
+    $chatbot=$("#chatbot");
+    $gk=$("#gk");
 
     firstTxt = "안녕하세요 ReLu 챗봇입니다."
 
     // 인사, 이미지 출력
     helloImg = "<img style='margin:0;' src='/static/img/hello.gif'>";
     bottext = "<div style='margin:15px 0;padding-left:5px;text-align:left;'><span style='padding:3px 10px;background-color:#DDD;border-radius:3px;'>" + firstTxt + "</span></div>";
+    backimg="<img style='margin:0;width:100%;height:800px;border-radius:2%' src='/static/back_img/fd.gif'>";
+    
+    $gk.append(backimg);
     $chatbox.append(helloImg);
     $chatbox.append(bottext);
 
@@ -236,17 +241,40 @@ function send_message(){
             .animate({'bottom':'25px'},500,loopBoat);
     }
 
-
-
-
     if (bottext1 == "메뉴추천 기능을 시작하겠습니다."){
         mapt(chattext)
     }else if (bottext1=="원하는 레시피의 음식명을 입력해주세요!"){
         recipe()
     }
 
+    if (rebtncall=="버튼"){ // 버튼 다시 불러오기
+        rebtn(bottext1)
+        btnCall()
+    }
 
 } // end 
+
+
+
+function rebtn(chattext){ // 기존 버튼 삭제
+    
+    // $("*").remove("#btn1");
+    // $("*").remove("#btn2");
+    // $("*").remove("#btn3");
+    // $("*").remove("#btn4");
+    // $("*").remove("#btn5");
+    // $("*").remove("#btn6");
+
+    $("#btn1").attr('id','btnx');
+    $("#btn2").attr('id','btnx');
+    $("#btn3").attr('id','btnx');
+    $("#btn4").attr('id','btnx');
+    $("#btn5").attr('id','btnx');
+    $("#btn6").attr('id','btnx');
+    
+    
+    // 단순한 버튼의 새로운 생성이 아닌 btnCall 에 있는 다른 함수와 연계된 것도 고려해야한다.
+}
 
 
 
@@ -420,7 +448,7 @@ function recipe(){
         headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"}
     }).done(function (msg) {
         console.log(msg);
-        for (var i = 0; i < 4; i++){
+        for (var i = 0; i < 5; i++){
             $("#result_form").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
             $("#result_form").append("<strong>저자 : </strong> " + msg.documents[i].author + "<br>");
             $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
