@@ -1,8 +1,8 @@
 
 #chatbot {
-    width: 85%;
+    width: 90%;
     height: 800px;
-    margin-left: 8%;
+    margin-left: 5%;
     
 }
 
@@ -11,7 +11,7 @@
     width: 50%;
     position: relative;
     background-color: pink;
-    height: 740px;
+    height: 100%;
     animation:slide1 2s;
 }
 
@@ -20,12 +20,12 @@
     width: 50%;
     position: relative;
     background-color: skyblue;
-    height: 740px;
+    height: 100%;
     animation: slide2 2s;
 }
 
 #chatbox {
-    height:1000px;
+    height:755px;
     background-color: skyblue;
     overflow-y:scroll;
     overflow-x:hidden;
