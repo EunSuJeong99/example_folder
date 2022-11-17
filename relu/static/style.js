@@ -258,6 +258,9 @@ function mapt(chattext){
     }else if (chattext.indexOf("동") != -1){
         locationchat = chattext
         initTmap(categorychat, locationchat)
+    }else if (chattext.indexOf("시") != -1){
+        locationchat = chattext
+        initTmap(categorychat, locationchat)
     }
 }
 
