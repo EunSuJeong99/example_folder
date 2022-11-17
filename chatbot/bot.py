@@ -17,6 +17,7 @@ from utils.FindAnswer import FindAnswer
 from utils.FindMoney import FindMoney
 from utils.FindFood import FindFood
 from utils.FindYN import FindYN
+from utils.FindStore import FindStore
 
 
 # 전처리 객체 생성
@@ -115,9 +116,14 @@ def to_client(conn, addr, params):
 
                 # 음식 검색해오기
                 try:
-                    findfood = FindFood(db)
-                    answer = findfood.searchFood(intent_name, si_label)      
-                    answer = answer + "는(은) 어떠세요?"
+                    if btntype == 'three_situ':
+                        findfood = FindFood(db)
+                        answer = findfood.searchFood(intent_name, si_label)      
+                        answer = answer + "는(은) 어떠세요?"
+                    elif btntype == 'store':
+                        findstore = FindStore(db)
+                        answer = findstore.searchStore(intent_name, si_label)
+                        answer = answer + "는(은) 어떠세요?"
                 except:
                     answer = "밥은...그냥 아무거나 먹어요"
                 
@@ -132,7 +138,7 @@ def to_client(conn, addr, params):
 
                 return
 
-        if intent_name == "추가" and btntype == '' and situ_plus != '':   # 추천한 음식이 맘에 안들때
+        if btntype == 'plus':   # 추천한 음식이 맘에 안들때
 
             print("여기에 들어왔다")
 

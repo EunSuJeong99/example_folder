@@ -17,14 +17,12 @@ $(function(){
     // SEND 버튼을 누르거나
     $("#sendbtn").click(function(){
         send_message();
-        $btntype = "";
     });
 
     // ENTER key 가 눌리면
     $("#chattext").keyup(function(event){
         if(event.keyCode == 13){
             send_message();
-            $btntype = "";
         }
     });
 
@@ -167,7 +165,10 @@ function send_message(){
     $("#chatbox").append(addtext);    
 
 
-    if($btntype == 'three_situ') {
+    if($btntype == 'three_situ' && $situ_plus != "") {
+        $btntype = 'plus';
+
+    }else if($btntype == 'three_situ') {
         $situ_plus = $("#chattext").val();  // 상황별에서 기억될 챗 따로 담음
     }
 
