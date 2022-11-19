@@ -112,6 +112,8 @@ function btnCall() {
     $("#btn3").click(function(){
         bottext = "룰렛 기능을 시작하겠습니다.";
 
+        $btntype = 'roulette';
+
         $chatbox.append(bottextStart + bottext + bottextEnd);
     });
 

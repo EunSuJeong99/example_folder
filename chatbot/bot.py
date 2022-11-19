@@ -2,6 +2,7 @@
 import threading
 import json
 import os
+import random
 
 from config.DatabaseConfig import *
 from utils.Database import Database
@@ -73,6 +74,8 @@ def to_client(conn, addr, params):
         ner_predicts = ner.predict(query)
         ner_tags = ner.predict_tags(query)
 
+        print(ner_tags)
+
 
         # 추가정보❗
         plus = recv_json_data['Plus']
@@ -87,7 +90,7 @@ def to_client(conn, addr, params):
             plus_intent_name = intent.labels[plus_intent_predict]
             plus_money = ""
 
-            print("상황별의 추가 의도 파악: "+ plus_intent_name)
+            print(f"상황별의 추가 의도 파악: {ner_tags}")
 
 
 
@@ -109,7 +112,52 @@ def to_client(conn, addr, params):
 
         #     return
 
-        # 기분, 날씨, 상황일 때 여기 들어온다
+
+        # 룰렛일때 여기 들어온다
+        if btntype == 'roulette':
+            if intent_name == '음식':
+                if len(ner_tags) < 2 or len(ner_tags) > 5:
+
+                    answer = "음식을 2개 이상 5개 이하로 입력해주세요"
+
+                    sent_json_data_str = {    # response 할 JSON 객체 준비
+                    "Query" : query,
+                    "Answer": answer,
+                    "Intent": intent_name
+                    }
+                    
+                    message = json.dumps(sent_json_data_str)
+                    conn.send(message.encode())  # responses
+
+                    return
+                
+                else:
+                    food_list = query.split(',')
+
+                    print(food_list)
+
+                    random.shuffle(food_list)   # 원본 변화?
+
+                    print(food_list)
+
+                    return_food = food_list[0]
+
+                    answer = return_food + "(이)가 당첨!! 맛있게 드세요😊😊"
+
+                    sent_json_data_str = {    # response 할 JSON 객체 준비
+                    "Query" : query,
+                    "Answer": answer,
+                    "Intent": intent_name
+                    }
+                    
+                    message = json.dumps(sent_json_data_str)
+                    conn.send(message.encode())  # responses
+
+                    return
+
+
+
+        # 기분, 날씨, 상황일때 여기 들어온다
         if btntype == 'three_situ' or btntype == 'store':
             if intent_name == '기분' or intent_name == '날씨' or intent_name == '상황':
                 # 기분, 날씨, 상황 가져오기
