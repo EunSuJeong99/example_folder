@@ -445,7 +445,7 @@ function recipe(){
         headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"}
     }).done(function (msg) {
         console.log(msg);
-        for (var i = 0; i < 5; i++){
+        for (var i = 0; i < 4; i++){
             $("#result_form").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
             $("#result_form").append("<strong>저자 : </strong> " + msg.documents[i].author + "<br>");
             $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");

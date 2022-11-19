@@ -1,3 +1,7 @@
+body {
+    font-size: 25px;
+}
+
 
 #chatbot {
     width: 90%;
@@ -38,7 +42,7 @@
     display: block;
     position: relative;
     float: left;
-    width: 80px;
+    width: 100px;
     padding-left: 5px;
     margin: 5px;
     font-weight: 600;
