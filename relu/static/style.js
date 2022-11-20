@@ -73,7 +73,7 @@ function btnCall() {
 
     $chatbox.append("<button id='btn1' class='button'>" + '메뉴추천' + "</button>");
     $chatbox.append("<button id='btn2' class='button'>" + '주변가게' + "</button>");
-    $chatbox.append("<button id='btn3' class='button'>" + '룰렛' + "</button>");
+    $chatbox.append("<button id='btn3' class='button'>" + '복불복' + "</button>");
     $chatbox.append("<button id='btn4' class='button'>" + '예산추천' + "</button>");
     $chatbox.append("<button id='btn5' class='button'>" + '레시피' + "</button>");
     $chatbox.append("<button id='btn6' class='button'>" + '상황별' + "</button>");
@@ -110,11 +110,15 @@ function btnCall() {
     });
 
     $("#btn3").click(function(){
-        bottext = "룰렛 기능을 시작하겠습니다.";
+        bottext = "복불복 기능을 시작하겠습니다.";
 
         $btntype = 'roulette';
 
         $chatbox.append(bottextStart + bottext + bottextEnd);
+        bottext2 = "음식을 입력해주세요 ex)감자탕, 삼계탕, 칼국수"
+        setTimeout(function() {
+            $chatbox.append(bottextStart + bottext2 + bottextEnd);
+        }, 1000);
     });
 
     $("#btn4").click(function(){
@@ -474,3 +478,5 @@ function modalClose(){
 $("#popup").fadeOut(); //페이드아웃 효과
 }
 });
+
+
