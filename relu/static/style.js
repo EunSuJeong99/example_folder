@@ -386,7 +386,7 @@ function initTmap(category, location){
            error:function(request,status,error){
                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
            }
-       });
+       });nbsp
    });
 
    
@@ -401,7 +401,7 @@ function initTmap(category, location){
 
 function callTmp(category, location){
 
-    m1 = m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + '_'+ category +"><button style='border:0;background-color:violet' id='btn_select'>적용하기</button></div>"+"<div id='map_div' class='map_wrap' style='float:left'></div><div><div style='width: 30%; float:left;''><div class='title'><strong>Search Results</strong></div></div></div>"+"<div class='rst_wrap'  style='height: 300px; overflow: auto; position: relative; width: 100%'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div>"
+    m1 = m1 = "<div><input type='text' class='text_custom' id='searchKeyword' name='searchKeyword' value="+ location + "&nbsp;"+ category +"><button style='border:0;background-color:violet' id='btn_select'>적용하기</button></div>"+"<div id='map_div' class='map_wrap' style='float:left'></div><div><div style='width: 30%; float:left;''><div class='title'><strong>Search Results</strong></div></div></div>"+"<div class='rst_wrap'  style='height: 300px; overflow: auto; position: relative; width: 100%'><div class='rst mCustomScrollbar'><ul id='searchResult' name='searchResult'><li>검색결과</li></ul></div></div>"
 
 
     $result_form = $("#result_form");
@@ -436,9 +436,6 @@ function popOpen() {
 
 function recipe(){
     var pageNum = 1;
-
-   
-    
     $("#result_form").html("");
     $.ajax({
         method: "GET",
@@ -448,12 +445,14 @@ function recipe(){
     }).done(function (msg) {
         console.log(msg);
         for (var i = 0; i < 4; i++){
-            $("#result_form").append('<strong>제목 : </strong>'+ msg.documents[i].title + "</a>"+'<br>');
-            $("#result_form").append("<strong>저자 : </strong> " + msg.documents[i].author + "<br>");
-            $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"+"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
+            $("#result_form").append('<strong>제목 : </strong>'
+            + msg.documents[i].title + "</a>"+'<br>');
+            $("#result_form").append("<strong>저자 : </strong> "
+            + msg.documents[i].author + "<br>");
+            $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"
+            +"<img src='" + msg.documents[i].thumbnail + "'/><br><hr>");
         }
     });
-    
 }
 
 
