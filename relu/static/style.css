@@ -110,9 +110,9 @@ a:hover {
 #second{
     /* background-image: url("/static/door_img/logo.png"); */
     position: absolute;
-    opacity:0.9;
-    left: 38%;
-    top: 20%;
+    opacity:0.3;
+    left: 20%;
+    top: 10%;
     animation: slide4 7s;
 }
 @keyframes slide4 {
@@ -122,7 +122,7 @@ a:hover {
     }
     to{
         top:20%;
-       opacity:0.9; 
+       opacity:0.3; 
     }
 }
 
