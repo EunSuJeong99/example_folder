@@ -145,9 +145,10 @@ def to_client(conn, addr, params):
                     answer = return_food + "(이)가 당첨!! 맛있게 드세요😊😊"
 
                     sent_json_data_str = {    # response 할 JSON 객체 준비
-                    "Query" : query,
-                    "Answer": answer,
-                    "Intent": intent_name
+                        "Query" : query,
+                        "Answer": answer,
+                        "Intent": intent_name,
+                        "Img": 'thank_you.gif'
                     }
                     
                     message = json.dumps(sent_json_data_str)
@@ -259,12 +260,13 @@ def to_client(conn, addr, params):
             
             elif str_yn_label == '1':
 
-                answer = "맛있게 드세요!!!"
+                answer = "맛있게 드세요!!!😊😊"
 
                 sent_json_data_str = {    # response 할 JSON 객체 준비
                     "Query" : query,
                     "Answer": answer,
-                    "Intent": intent_name
+                    "Intent": intent_name,
+                    "Img": 'thank_you.gif'
                 }
                 
                 message = json.dumps(sent_json_data_str)
