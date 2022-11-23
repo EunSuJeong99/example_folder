@@ -213,7 +213,7 @@ def to_client(conn, addr, params):
                     try:
                         findmoney = FindMoney(db)
                         answer = findmoney.searchMoney(plus_money)
-                        answer = "그럼" + answer + "는(은) 어떠세요?"
+                        answer = "그럼 " + answer + "는(은) 어떠세요?"
                     except:
                         answer = "돈이 없어요?"
                     

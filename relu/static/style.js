@@ -197,7 +197,7 @@ function send_message(){
         query: chattext,
         bottype: "WebClient",
         btntype: $btntype,
-        plus: $plus   // 상황별의 추가정보
+        plus: $plus   // 상황별, 예산별의 추가정보
     };
 
     $.ajax({
@@ -459,7 +459,7 @@ function recipe(){
         console.log(msg);
         for (var i = 0; i < 4; i++){
             $("#result_form").append('<strong>제목 : </strong>'
-            + msg.documents[i].title + "</a>"+'<br>');
+            + msg.documents[i].title +'<br>');
             $("#result_form").append("<strong>저자 : </strong> "
             + msg.documents[i].author + "<br>");
             $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"
