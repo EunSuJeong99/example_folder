@@ -73,7 +73,7 @@ function btnCall() {
 
     $chatbox.append("<button id='btn1' class='button'>" + '메뉴추천' + "</button>");
     $chatbox.append("<button id='btn2' class='button'>" + '주변가게' + "</button>");
-    $chatbox.append("<button id='btn3' class='button'>" + '복불복' + "</button>");
+    $chatbox.append("<button id='btn3' class='button'>" + '복볼복' + "</button>");
     $chatbox.append("<button id='btn4' class='button'>" + '예산추천' + "</button>");
     $chatbox.append("<button id='btn5' class='button'>" + '레시피' + "</button>");
     $chatbox.append("<button id='btn6' class='button'>" + '상황별' + "</button>");
@@ -110,15 +110,11 @@ function btnCall() {
     });
 
     $("#btn3").click(function(){
-        bottext = "복불복 기능을 시작하겠습니다.";
+        bottext = "룰렛 기능을 시작하겠습니다.";
 
         $btntype = 'roulette';
 
         $chatbox.append(bottextStart + bottext + bottextEnd);
-        bottext2 = "음식을 입력해주세요 ex)감자탕, 삼계탕, 칼국수"
-        setTimeout(function() {
-            $chatbox.append(bottextStart + bottext2 + bottextEnd);
-        }, 1000);
     });
 
     $("#btn4").click(function(){
@@ -232,15 +228,6 @@ function send_message(){
             } else if ($btntype == 'store' && response.Answer == '이에 맞는 음식을 추천해드릴게요!') {
                 initTmap(a, loc)
             }
-
-            // 맛있게드세요할때 gif 출력
-            if (response.Img) {
-                img_src = "/static/img/" + response.Img;
-                helloImg = `<img style='margin:0;' src='${img_src}'>`;
-
-                $chatbox.append(helloImg)
-            }
-
 
             // 스크롤 조정하기
             $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
@@ -457,9 +444,9 @@ function recipe(){
         headers: {Authorization: "KakaoAK c271c8053e77f9a25128d1dca2d53523"}
     }).done(function (msg) {
         console.log(msg);
-        for (var i = 0; i < 4; i++){
+        for (var i = 0; i < 10; i++){
             $("#result_form").append('<strong>제목 : </strong>'
-            + msg.documents[i].title + "</a>"+'<br>');
+            + msg.documents[i].title +'<br>');
             $("#result_form").append("<strong>저자 : </strong> "
             + msg.documents[i].author + "<br>");
             $("#result_form").append("<a href='"+ msg.documents[i].url +"'>"
@@ -486,5 +473,3 @@ function modalClose(){
 $("#popup").fadeOut(); //페이드아웃 효과
 }
 });
-
-
