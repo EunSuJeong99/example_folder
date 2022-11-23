@@ -229,8 +229,17 @@ function send_message(){
                 initTmap(a, loc)
             }
 
+            // 맛있게드세요할때 gif 출력
+            if (response.Img) {
+                img_src = "/static/img/" + response.Img;
+                helloImg = `<img style='margin:0;' src='${img_src}'>`;
+
+                $chatbox.append(helloImg)
+            }
+
             // 스크롤 조정하기
             $chatbox.animate({scrollTop: $chatbox.prop('scrollHeight')});
+
 
             // 먼저 입력했던 내용은 지우기
             $("#chattext").val("");
