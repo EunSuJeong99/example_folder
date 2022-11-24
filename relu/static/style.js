@@ -110,7 +110,7 @@ function btnCall() {
     });
 
     $("#btn3").click(function(){
-        bottext = "룰렛 기능을 시작하겠습니다.";
+        bottext = "복불복 기능을 시작하겠습니다.";
 
         $btntype = 'roulette';
 
